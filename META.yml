@@ -1,0 +1,63 @@
+---
+abstract: 'generate NewsML G2 news items'
+author:
+  - 'Philipp Gortan <philipp.gortan@apa.at>'
+build_requires: {}
+configure_requires:
+  Module::Build: 0.4
+dynamic_config: 1
+generated_by: 'Module::Build version 0.4005, CPAN::Meta::Converter version 2.130880'
+license: open_source
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: XML-NewsML_G2
+provides:
+  XML::NewsML_G2:
+    file: lib/XML/NewsML_G2.pm
+    version: v0.0_1
+  XML::NewsML_G2::Desk:
+    file: lib/XML/NewsML_G2/Desk.pm
+  XML::NewsML_G2::Genre:
+    file: lib/XML/NewsML_G2/Genre.pm
+  XML::NewsML_G2::Location:
+    file: lib/XML/NewsML_G2/Location.pm
+  XML::NewsML_G2::Media_Topic:
+    file: lib/XML/NewsML_G2/Media_Topic.pm
+  XML::NewsML_G2::News_Item:
+    file: lib/XML/NewsML_G2/News_Item.pm
+  XML::NewsML_G2::Organisation:
+    file: lib/XML/NewsML_G2/Organisation.pm
+  XML::NewsML_G2::Product:
+    file: lib/XML/NewsML_G2/Product.pm
+  XML::NewsML_G2::Provider:
+    file: lib/XML/NewsML_G2/Provider.pm
+  XML::NewsML_G2::Scheme:
+    file: lib/XML/NewsML_G2/Scheme.pm
+  XML::NewsML_G2::Scheme_Manager:
+    file: lib/XML/NewsML_G2/Scheme_Manager.pm
+  XML::NewsML_G2::Service:
+    file: lib/XML/NewsML_G2/Service.pm
+  XML::NewsML_G2::Topic:
+    file: lib/XML/NewsML_G2/Topic.pm
+  XML::NewsML_G2::Writer:
+    file: lib/XML/NewsML_G2/Writer.pm
+  XML::NewsML_G2::Writer_2_12:
+    file: lib/XML/NewsML_G2/Writer_2_12.pm
+  XML::NewsML_G2::Writer_2_9:
+    file: lib/XML/NewsML_G2/Writer_2_9.pm
+requires:
+  DateTime: 0
+  DateTime::Format::XSD: 0
+  Moose: 0.64
+  UUID::Tiny: 1.02
+  XML::LibXML: 0
+  namespace::autoclean: 0.05
+  perl: v5.8.0
+  version: 0.77
+resources:
+  license: http://opensource.org/licenses/gpl-license.php
+version: v0.0_1
+x_test_requires:
+  Test::Exception: 0
+  Test::More: 0
