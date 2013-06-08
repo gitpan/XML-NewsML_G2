@@ -1,21 +1,19 @@
 #! /usr/bin/perl
 
-# $Id: 04.minimal.t 46650 2013-06-08 13:19:29Z apatecgortan $
+# $Id: 04.minimal.t 46657 2013-06-08 20:12:50Z apatecgortan $
 
 use utf8;
 use Test::More;
-use Test::Exception;
-use File::Basename;
-use File::Spec::Functions qw(catfile);
 use XML::LibXML;
 use XML::NewsML_G2;
+
+use lib 't';
+use NewsML_G2_Test_Helpers qw(validate_g2);
 
 use warnings;
 use strict;
 
 diag("libxml version " . XML::LibXML::LIBXML_RUNTIME_VERSION);
-
-my $base_dir = dirname $0 || '.';
 
 ok(my $prov_apa = XML::NewsML_G2::Provider->new
   (qcode => 'apa', name => 'APA - Austria Presse Agentur'
@@ -35,8 +33,6 @@ ok(my $dom = $writer->create_dom(), 'create DOM');
 
 diag($dom->serialize(2));
 
-my $xsd = catfile($base_dir, 'xsds/NewsML-G2_2.12-spec-All-Power.xsd');
-ok(my $xmlschema = XML::LibXML::Schema->new(location => $xsd), 'parsing 2.12 XSD');
-lives_ok(sub {$xmlschema->validate($dom)}, '2.12 XML validates');
+validate_g2($dom, '2.12');
 
 done_testing;

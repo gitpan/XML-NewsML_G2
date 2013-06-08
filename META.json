@@ -35,7 +35,7 @@
    "provides" : {
       "XML::NewsML_G2" : {
          "file" : "lib/XML/NewsML_G2.pm",
-         "version" : "v0.0_2"
+         "version" : "v0.0_3"
       },
       "XML::NewsML_G2::Desk" : {
          "file" : "lib/XML/NewsML_G2/Desk.pm",
@@ -104,7 +104,7 @@
          "http://opensource.org/licenses/gpl-license.php"
       ]
    },
-   "version" : "v0.0_2",
+   "version" : "v0.0_3",
    "x_test_requires" : {
       "Test::Exception" : "0",
       "Test::More" : "0"
