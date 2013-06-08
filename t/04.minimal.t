@@ -1,6 +1,6 @@
 #! /usr/bin/perl
 
-# $Id: 04.minimal.t 46640 2013-06-07 15:16:57Z apatecgortan $
+# $Id: 04.minimal.t 46650 2013-06-08 13:19:29Z apatecgortan $
 
 use utf8;
 use Test::More;
@@ -12,6 +12,8 @@ use XML::NewsML_G2;
 
 use warnings;
 use strict;
+
+diag("libxml version " . XML::LibXML::LIBXML_RUNTIME_VERSION);
 
 my $base_dir = dirname $0 || '.';
 

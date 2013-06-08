@@ -1,6 +1,6 @@
 package XML::NewsML_G2;
 
-# $Id: NewsML_G2.pm 46462 2013-05-24 16:06:29Z apatecgortan $
+# $Id: NewsML_G2.pm 46651 2013-06-08 13:20:43Z apatecgortan $
 
 use XML::NewsML_G2::News_Item;
 use XML::NewsML_G2::Provider;
@@ -21,7 +21,7 @@ use XML::NewsML_G2::Writer_2_12;
 use warnings;
 use strict;
 
-use version; our $VERSION = qv('v0.0_1');
+use version; our $VERSION = qv('v0.0_2');
 
 1;
 
@@ -88,6 +88,8 @@ documentation:
 
 =item L<XML::NewsML_G2::Writer_2_9>
 
+=item L<XML::NewsML_G2::Writer_2_12>
+
 =back
 
 =head1 BUGS AND LIMITATIONS
@@ -121,4 +123,4 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this module.  If not, see <http://www.gnu.org/licenses/>.
+along with this module.  If not, see L<http://www.gnu.org/licenses/>.

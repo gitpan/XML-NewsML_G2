@@ -1,6 +1,6 @@
 package XML::NewsML_G2::Scheme_Manager;
 
-# $Id: Scheme_Manager.pm 46640 2013-06-07 15:16:57Z apatecgortan $
+# $Id: Scheme_Manager.pm 46650 2013-06-08 13:19:29Z apatecgortan $
 
 use Moose;
 use Carp;
@@ -120,13 +120,21 @@ Scheme for topics
 
 
 =item isrol
+
 =item nprov
+
 =item ninat
+
 =item stat
+
 =item sig
+
 =item iso3166_1a2
+
 =item genre
+
 =item isin
+
 =item medtop
 
 =back
