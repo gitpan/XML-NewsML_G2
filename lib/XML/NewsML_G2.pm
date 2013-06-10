@@ -1,6 +1,6 @@
 package XML::NewsML_G2;
 
-# $Id: NewsML_G2.pm 46658 2013-06-08 20:14:47Z apatecgortan $
+# $Id: NewsML_G2.pm 46667 2013-06-10 10:28:43Z apatecgortan $
 
 use XML::NewsML_G2::News_Item;
 use XML::NewsML_G2::Provider;
@@ -21,7 +21,7 @@ use XML::NewsML_G2::Writer_2_12;
 use warnings;
 use strict;
 
-use version; our $VERSION = qv('v0.0_3');
+use version; our $VERSION = qv('v0.0_4');
 
 1;
 
@@ -34,7 +34,7 @@ XML::NewsML_G2 - generate NewsML G2 news items
 
 =head1 VERSION
 
-This document describes XML::NewsML_G2 version 0.0_1
+This document describes the package XML::NewsML_G2
 
 
 =head1 SYNOPSIS

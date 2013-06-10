@@ -4,7 +4,7 @@
       "Philipp Gortan <philipp.gortan@apa.at>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.4005, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Module::Build version 0.4005, CPAN::Meta::Converter version 2.130880",
    "license" : [
       "open_source"
    ],
@@ -35,67 +35,52 @@
    "provides" : {
       "XML::NewsML_G2" : {
          "file" : "lib/XML/NewsML_G2.pm",
-         "version" : "v0.0_3"
+         "version" : "v0.0_4"
       },
       "XML::NewsML_G2::Desk" : {
-         "file" : "lib/XML/NewsML_G2/Desk.pm",
-         "version" : 0
+         "file" : "lib/XML/NewsML_G2/Desk.pm"
       },
       "XML::NewsML_G2::Genre" : {
-         "file" : "lib/XML/NewsML_G2/Genre.pm",
-         "version" : 0
+         "file" : "lib/XML/NewsML_G2/Genre.pm"
       },
       "XML::NewsML_G2::Location" : {
-         "file" : "lib/XML/NewsML_G2/Location.pm",
-         "version" : 0
+         "file" : "lib/XML/NewsML_G2/Location.pm"
       },
       "XML::NewsML_G2::Media_Topic" : {
-         "file" : "lib/XML/NewsML_G2/Media_Topic.pm",
-         "version" : 0
+         "file" : "lib/XML/NewsML_G2/Media_Topic.pm"
       },
       "XML::NewsML_G2::News_Item" : {
-         "file" : "lib/XML/NewsML_G2/News_Item.pm",
-         "version" : 0
+         "file" : "lib/XML/NewsML_G2/News_Item.pm"
       },
       "XML::NewsML_G2::Organisation" : {
-         "file" : "lib/XML/NewsML_G2/Organisation.pm",
-         "version" : 0
+         "file" : "lib/XML/NewsML_G2/Organisation.pm"
       },
       "XML::NewsML_G2::Product" : {
-         "file" : "lib/XML/NewsML_G2/Product.pm",
-         "version" : 0
+         "file" : "lib/XML/NewsML_G2/Product.pm"
       },
       "XML::NewsML_G2::Provider" : {
-         "file" : "lib/XML/NewsML_G2/Provider.pm",
-         "version" : 0
+         "file" : "lib/XML/NewsML_G2/Provider.pm"
       },
       "XML::NewsML_G2::Scheme" : {
-         "file" : "lib/XML/NewsML_G2/Scheme.pm",
-         "version" : 0
+         "file" : "lib/XML/NewsML_G2/Scheme.pm"
       },
       "XML::NewsML_G2::Scheme_Manager" : {
-         "file" : "lib/XML/NewsML_G2/Scheme_Manager.pm",
-         "version" : 0
+         "file" : "lib/XML/NewsML_G2/Scheme_Manager.pm"
       },
       "XML::NewsML_G2::Service" : {
-         "file" : "lib/XML/NewsML_G2/Service.pm",
-         "version" : 0
+         "file" : "lib/XML/NewsML_G2/Service.pm"
       },
       "XML::NewsML_G2::Topic" : {
-         "file" : "lib/XML/NewsML_G2/Topic.pm",
-         "version" : 0
+         "file" : "lib/XML/NewsML_G2/Topic.pm"
       },
       "XML::NewsML_G2::Writer" : {
-         "file" : "lib/XML/NewsML_G2/Writer.pm",
-         "version" : 0
+         "file" : "lib/XML/NewsML_G2/Writer.pm"
       },
       "XML::NewsML_G2::Writer_2_12" : {
-         "file" : "lib/XML/NewsML_G2/Writer_2_12.pm",
-         "version" : 0
+         "file" : "lib/XML/NewsML_G2/Writer_2_12.pm"
       },
       "XML::NewsML_G2::Writer_2_9" : {
-         "file" : "lib/XML/NewsML_G2/Writer_2_9.pm",
-         "version" : 0
+         "file" : "lib/XML/NewsML_G2/Writer_2_9.pm"
       }
    },
    "release_status" : "testing",
@@ -104,7 +89,7 @@
          "http://opensource.org/licenses/gpl-license.php"
       ]
    },
-   "version" : "v0.0_3",
+   "version" : "v0.0_4",
    "x_test_requires" : {
       "Test::Exception" : "0",
       "Test::More" : "0"

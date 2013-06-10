@@ -1,4 +1,4 @@
-# $Id: Build.PL 46640 2013-06-07 15:16:57Z apatecgortan $
+# $Id: Build.PL 46667 2013-06-10 10:28:43Z apatecgortan $
 
 use strict;
 use warnings;
@@ -30,6 +30,7 @@ my $builder = Module::Build->new
    add_to_cleanup =>
    [ 'XML-NewsML_G2-*',
    ],
+   create_makefile_pl => 'traditional',
   );
 
 $builder->create_build_script();
