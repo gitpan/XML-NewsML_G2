@@ -1,6 +1,6 @@
 package XML::NewsML_G2::Writer;
 
-# $Id: Writer.pm 46650 2013-06-08 13:19:29Z apatecgortan $
+# $Id: Writer.pm 46693 2013-06-11 08:28:45Z apatecgortan $
 
 use Moose;
 use DateTime;
@@ -363,7 +363,9 @@ sub _create_content_meta {
     my @subjects = $self->_create_subjects();
     $cm->appendChild($_) foreach (@subjects);
 
-    $cm->appendChild($self->create_element('slugline', separator => $self->news_item->slugline_sep, _text => $self->news_item->slugline));
+    if ($self->news_item->slugline) {
+        $cm->appendChild($self->create_element('slugline', separator => $self->news_item->slugline_sep, _text => $self->news_item->slugline));
+    }
 
     $cm->appendChild(my $hl1 = $self->create_element('headline', _text => $self->news_item->title));
     $self->scheme_manager->add_role($hl1, 'hltype', 'title');

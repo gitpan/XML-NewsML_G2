@@ -1,6 +1,6 @@
 package XML::NewsML_G2::News_Item;
 
-# $Id: News_Item.pm 46640 2013-06-07 15:16:57Z apatecgortan $
+# $Id: News_Item.pm 46693 2013-06-11 08:28:45Z apatecgortan $
 
 use XML::LibXML qw();
 use UUID::Tiny ':std';
@@ -27,7 +27,7 @@ has 'embargo_text', isa => 'Str', is => 'rw';
 
 has 'priority', isa => 'Int', is => 'ro', default => 5;
 has 'message_id', isa => 'Str', is => 'ro';
-has 'slugline', isa => 'Str', is => 'ro', required => 1;
+has 'slugline', isa => 'Str', is => 'ro';
 has 'slugline_sep', isa => 'Str', is => 'ro', default => '/';
 has 'note', isa => 'Str', is => 'ro';
 has 'closing', isa => 'Str', is => 'rw';

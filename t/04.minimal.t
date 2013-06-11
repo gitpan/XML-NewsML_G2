@@ -1,6 +1,6 @@
 #! /usr/bin/perl
 
-# $Id: 04.minimal.t 46657 2013-06-08 20:12:50Z apatecgortan $
+# $Id: 04.minimal.t 46693 2013-06-11 08:28:45Z apatecgortan $
 
 use utf8;
 use Test::More;
@@ -21,7 +21,6 @@ ok(my $prov_apa = XML::NewsML_G2::Provider->new
 
 ok(my $ni = XML::NewsML_G2::News_Item->new
    (title => 'Saisonstart im Schweizerhaus: Run aufs Krügerl im Prater',
-    slugline => 'Buntes/Freizeit/Bauten/Eröffnung/Unterhaltung/Wien/Kommunales',
     language => 'de',
     provider => $prov_apa,
    ), 'create News Item instance');

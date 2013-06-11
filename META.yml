@@ -15,7 +15,7 @@ name: XML-NewsML_G2
 provides:
   XML::NewsML_G2:
     file: lib/XML/NewsML_G2.pm
-    version: v0.0_4
+    version: v0.0_5
   XML::NewsML_G2::Desk:
     file: lib/XML/NewsML_G2/Desk.pm
   XML::NewsML_G2::Genre:
@@ -57,7 +57,7 @@ requires:
   version: 0.77
 resources:
   license: http://opensource.org/licenses/gpl-license.php
-version: v0.0_4
+version: v0.0_5
 x_test_requires:
   Test::Exception: 0
   Test::More: 0
