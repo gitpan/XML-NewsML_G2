@@ -1,5 +1,5 @@
 {
-   "abstract" : "generate NewsML G2 news items",
+   "abstract" : "generate NewsML-G2 news items",
    "author" : [
       "Philipp Gortan <philipp.gortan@apa.at>"
    ],
@@ -16,7 +16,7 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "Module::Build" : "0.4"
+            "Module::Build" : "0.4004"
          }
       },
       "runtime" : {
@@ -35,7 +35,7 @@
    "provides" : {
       "XML::NewsML_G2" : {
          "file" : "lib/XML/NewsML_G2.pm",
-         "version" : "v0.1.0"
+         "version" : "v0.1.1"
       },
       "XML::NewsML_G2::Desk" : {
          "file" : "lib/XML/NewsML_G2/Desk.pm"
@@ -86,10 +86,10 @@
    "release_status" : "stable",
    "resources" : {
       "license" : [
-         "http://opensource.org/licenses/gpl-license.php"
+         "http://www.gnu.org/licenses/old-licenses/gpl-1.0.txt"
       ]
    },
-   "version" : "v0.1.0",
+   "version" : "v0.1.1",
    "x_test_requires" : {
       "Test::Exception" : "0",
       "Test::More" : "0"

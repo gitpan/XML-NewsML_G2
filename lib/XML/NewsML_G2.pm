@@ -1,6 +1,6 @@
 package XML::NewsML_G2;
 
-# $Id: NewsML_G2.pm 46857 2013-06-18 16:01:51Z apatecgortan $
+# $Id: NewsML_G2.pm 46999 2013-06-28 13:32:40Z apatecgortan $
 
 use XML::NewsML_G2::News_Item;
 use XML::NewsML_G2::Provider;
@@ -21,7 +21,7 @@ use XML::NewsML_G2::Writer_2_12;
 use warnings;
 use strict;
 
-use version; our $VERSION = qv('v0.1.0');
+use version; our $VERSION = qv('v0.1.1');
 
 1;
 
@@ -29,7 +29,7 @@ __END__
 
 =head1 NAME
 
-XML::NewsML_G2 - generate NewsML G2 news items
+XML::NewsML_G2 - generate NewsML-G2 news items
 
 
 =head1 VERSION
@@ -48,15 +48,23 @@ This document describes the package XML::NewsML_G2
 =head1 DESCRIPTION
 
 This module tries to implement the creation of XML files conforming to
-the NewsML G2 specification as published by the IPTC. It does not aim
+the NewsML-G2 specification as published by the IPTC. It does not aim
 in implementing the complete standard, but in covering the most common
 use cases.
 
 For the full specification of the format, visit
 L<http://www.iptc.org/site/News_Exchange_Formats/NewsML-G2/>
 
-For further information on this software, please check the following
-documentation:
+=head1 CURRENT STATUS
+
+The implementation currently support text items only - no support for
+images, videos, graphics or multimedia packages yet.
+
+Version 2.9 of the standard is frozen, so the output should not change
+when you update this library. Version 2.12 however is not yet frozen,
+changes in the output are to be expected.
+
+=head1 API
 
 =over 4
 

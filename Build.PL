@@ -1,4 +1,4 @@
-# $Id: Build.PL 46667 2013-06-10 10:28:43Z apatecgortan $
+# $Id: Build.PL 46997 2013-06-28 13:25:06Z apatecgortan $
 
 use strict;
 use warnings;
@@ -8,7 +8,7 @@ my $builder = Module::Build->new
   (module_name         => 'XML::NewsML_G2',
    license             => 'gpl',
    dist_author         => 'Philipp Gortan <philipp.gortan@apa.at>',
-   dist_abstract       => 'generate NewsML G2 news items',
+   dist_abstract       => 'generate NewsML-G2 news items',
    dist_version_from   => 'lib/XML/NewsML_G2.pm',
    requires =>
    { 'perl'                  => '5.8.0',
@@ -21,7 +21,7 @@ my $builder = Module::Build->new
      'UUID::Tiny'            => 1.02,
    },
    configure_requires =>
-   { 'Module::Build' => 0.40
+   { 'Module::Build' => 0.4004 # support for test_requires
    },
    test_requires =>
    { 'Test::More'      => 0,
@@ -31,6 +31,7 @@ my $builder = Module::Build->new
    [ 'XML-NewsML_G2-*',
    ],
    create_makefile_pl => 'traditional',
+   sign => 1,
   );
 
 $builder->create_build_script();

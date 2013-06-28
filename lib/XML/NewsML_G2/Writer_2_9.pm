@@ -1,6 +1,6 @@
 package XML::NewsML_G2::Writer_2_9;
 
-# $Id: Writer_2_9.pm 46640 2013-06-07 15:16:57Z apatecgortan $
+# $Id: Writer_2_9.pm 46997 2013-06-28 13:25:06Z apatecgortan $
 
 use Moose;
 use namespace::autoclean;
@@ -46,7 +46,7 @@ __END__
 =head1 NAME
 
 XML::NewsML_G2::Writer_2_9 - create XML DOM tree conforming to version
-2.9 of the NewsML G2 specification
+2.9 of the NewsML-G2 specification
 
 Check the documentation of L<XML::NewsML_G2::Writer> for general
 information on this class.

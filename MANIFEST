@@ -26,6 +26,8 @@ t/02.Product.t
 t/03.Paragraphs.t
 t/04.minimal.t
 t/05.no-catalog.t
+t/06.add-schema-catalog.t
+t/signature.t
 t/perlcritic.t
 t/perlcriticrc
 t/pod-coverage.t
@@ -36,3 +38,5 @@ t/xsds/xml.xsd
 META.yml
 META.json
 Makefile.PL
+LICENSE
+SIGNATURE    Added here by Module::Build

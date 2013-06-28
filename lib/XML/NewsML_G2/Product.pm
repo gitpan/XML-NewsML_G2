@@ -1,12 +1,12 @@
 package XML::NewsML_G2::Product;
 
-# $Id: Product.pm 46519 2013-05-31 15:38:08Z apatecgortan $
+# $Id: Product.pm 46929 2013-06-25 08:32:49Z apatecgortan $
 
 use Moose;
 use namespace::autoclean;
 
 
-has 'name', isa => 'Str', is => 'ro', lazy_build => 1;
+has 'name', isa => 'Str', is => 'ro', lazy => 1, builder => '_build_name';
 has 'isbn', isa => 'Str', is => 'rw';
 has 'ean', isa => 'Str', is => 'rw';
 has 'name_template', isa => 'Str', is => 'ro', default => 'Product %d';
