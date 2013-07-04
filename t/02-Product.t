@@ -1,6 +1,6 @@
 #! /usr/bin/perl
 
-# $Id: 02.Product.t 46190 2013-05-03 16:15:08Z apatecgortan $
+# $Id: 02-Product.t 47068 2013-07-03 12:17:55Z apatecgortan $
 
 use Test::More;
 use XML::NewsML_G2;

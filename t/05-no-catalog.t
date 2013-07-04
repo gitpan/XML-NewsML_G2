@@ -1,6 +1,6 @@
 #! /usr/bin/perl
 
-# $Id: 05.no-catalog.t 46997 2013-06-28 13:25:06Z apatecgortan $
+# $Id: 05-no-catalog.t 47068 2013-07-03 12:17:55Z apatecgortan $
 
 use utf8;
 use Test::More;

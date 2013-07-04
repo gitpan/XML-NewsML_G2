@@ -1,6 +1,6 @@
 package XML::NewsML_G2;
 
-# $Id: NewsML_G2.pm 46999 2013-06-28 13:32:40Z apatecgortan $
+# $Id: NewsML_G2.pm 47100 2013-07-04 16:30:19Z apatecgortan $
 
 use XML::NewsML_G2::News_Item;
 use XML::NewsML_G2::Provider;
@@ -21,7 +21,7 @@ use XML::NewsML_G2::Writer_2_12;
 use warnings;
 use strict;
 
-use version; our $VERSION = qv('v0.1.1');
+use version; our $VERSION = qv('v0.1.2');
 
 1;
 
@@ -34,14 +34,29 @@ XML::NewsML_G2 - generate NewsML-G2 news items
 
 =head1 VERSION
 
-This document describes the package XML::NewsML_G2
+v0.1.2
 
+=begin readme
+
+=head1 INSTALLATION
+
+To install this module, run the following commands:
+
+    perl Build.PL
+    ./Build
+    ./Build test
+    ./Build install
+
+=end readme
+
+=for test_synopsis
+    my %args;
 
 =head1 SYNOPSIS
 
     use XML::NewsML_G2;
-    my $ni = XML::NewsML_G2::News_Item->new(...);
-    my $writer = XML::NewsML_G2::Writer_2_9(news_item => $ni);
+    my $ni = XML::NewsML_G2::News_Item->new(%args);
+    my $writer = XML::NewsML_G2::Writer_2_12(news_item => $ni);
     my $dom = $writer->create_dom();
 
 
@@ -61,8 +76,69 @@ The implementation currently support text items only - no support for
 images, videos, graphics or multimedia packages yet.
 
 Version 2.9 of the standard is frozen, so the output should not change
-when you update this library. Version 2.12 however is not yet frozen,
-changes in the output are to be expected.
+when you update this distribution. Version 2.12 however is not yet
+frozen, changes in the output are to be expected.
+
+=head1 SCHEMES AND CATALOGS
+
+Before starting to use schemes or catalogs with this module, read the
+chapter 13 of the
+L<NewsML-G2 implementation guide|http://www.iptc.org/std/NewsML-G2/2.12/documentation/IPTC-G2-Implementation_Guide_5.0.pdf>.
+Go on, do it now. I'll wait.
+
+You don't need to use either schemes or catalogs in order to use this
+module, unless you are required to do so by the NewsML-G2 standard
+(e.g. the C<service> attribute). If you specify a value for such an
+attribute and don't add a corresponding scheme, creating the DOM tree
+will die.
+
+For all attributes where a scheme is not required by the standard, you
+can start without specifying anything. In that case, a C<literal>
+attribute will be created, with the value you specified in the
+C<qcode> attribute. For instance:
+
+    my $org = XML::NewsML_G2::Organisation->new(name => 'Google', qcode => 'gogl');
+    $ni->add_organisation($org);
+
+will result in this output:
+
+    <subject type="cpnat:organisation" literal="org#gogl">
+      <name>Google</name>
+    </subject>
+
+If the qcodes used in your organisation instances are part of a
+controlled vocabulary, you can convey this information by creating a
+L<XML::NewsML_G2::Scheme> instance, specifying a custom, unique C<uri>
+for your vocabulary, and registering it with the
+L<XML::NewsML_G2::Scheme_Manager>:
+
+    my $os = XML::NewsML_G2::Scheme->new(alias => 'xyzorg',
+        uri => 'http://xyz.org/cv/org');
+    my $sm = XML::NewsML_G2::Scheme_Manager->new(org => $os);
+
+The output will now contain an inline catalog with your scheme:
+
+    <catalog>
+      <scheme alias="xyzorg" uri="http://xyz.org/cv/org"/>
+    </catalog>
+
+and the literal will be replaced by a qcode:
+
+    <subject type="cpnat:organisation" qcode="xyzorg:gogl">
+      <name>Google</name>
+    </subject>
+
+If you have multiple schemes, you can package them together into a
+single catalog, which you publish on your website. Simply specify the
+URL of the catalog when creating the L<XML::NewsML_G2::Scheme>
+instance:
+
+    my $os = XML::NewsML_G2::Scheme->new(alias => 'xyzorg',
+        catalog => 'http://xyz.org/catalog_1.xml');
+
+and the inline catalog will be replaced with a link:
+
+    <catalogRef href="http://xyz.org/catalog_1.xml"/>
 
 =head1 API
 
@@ -100,6 +176,10 @@ changes in the output are to be expected.
 
 =back
 
+=head1 DEPENDENCIES
+
+Moose, XML::LibXML, DateTime, DateTime::Format::XSD, UUID::Tiny
+
 =head1 BUGS AND LIMITATIONS
 
 No bugs have been reported.
@@ -110,6 +190,14 @@ L<http://rt.cpan.org>.
 
 Be aware that the API for this module I<will> change with each
 upcoming release.
+
+=head1 SEE ALSO
+
+=over 4
+
+=item L<XML::NewsML> - Simple interface for creating NewsML documents
+
+=back
 
 =head1 AUTHOR
 

@@ -1,6 +1,6 @@
 package XML::NewsML_G2::Scheme_Manager;
 
-# $Id: Scheme_Manager.pm 46650 2013-06-08 13:19:29Z apatecgortan $
+# $Id: Scheme_Manager.pm 47068 2013-07-03 12:17:55Z apatecgortan $
 
 use Moose;
 use Carp;
@@ -65,6 +65,10 @@ __END__
 =head1 NAME
 
 XML::NewsML_G2::Scheme_Manager - hold all L<XML::NewsML_G2::Scheme> instances
+
+
+=for test_synopsis
+    my ($s1, $s2, $s3);
 
 =head1 SYNOPSIS
 
