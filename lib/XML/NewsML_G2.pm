@@ -1,27 +1,41 @@
 package XML::NewsML_G2;
 
-# $Id: NewsML_G2.pm 47100 2013-07-04 16:30:19Z apatecgortan $
+# $Id: NewsML_G2.pm 57058 2014-10-15 16:35:01Z apatecgortan $
 
 use XML::NewsML_G2::News_Item;
+use XML::NewsML_G2::News_Item_Text;
+use XML::NewsML_G2::News_Item_Picture;
+use XML::NewsML_G2::News_Item_Video;
+use XML::NewsML_G2::News_Item_Graphics;
+use XML::NewsML_G2::News_Item_Audio;
+use XML::NewsML_G2::News_Message;
 use XML::NewsML_G2::Provider;
+use XML::NewsML_G2::Copyright_Holder;
 use XML::NewsML_G2::Service;
 use XML::NewsML_G2::Genre;
 use XML::NewsML_G2::Desk;
 use XML::NewsML_G2::Media_Topic;
 use XML::NewsML_G2::Location;
 use XML::NewsML_G2::Organisation;
+use XML::NewsML_G2::Picture;
+use XML::NewsML_G2::Video;
+use XML::NewsML_G2::Graphics;
+use XML::NewsML_G2::Audio;
+use XML::NewsML_G2::Icon;
 use XML::NewsML_G2::Topic;
 use XML::NewsML_G2::Product;
+use XML::NewsML_G2::Package_Item;
+use XML::NewsML_G2::Group;
 use XML::NewsML_G2::Scheme_Manager;
 use XML::NewsML_G2::Scheme;
-use XML::NewsML_G2::Writer;
-use XML::NewsML_G2::Writer_2_9;
-use XML::NewsML_G2::Writer_2_12;
+use XML::NewsML_G2::Writer::News_Item;
+use XML::NewsML_G2::Writer::Package_Item;
+use XML::NewsML_G2::Writer::News_Message;
 
 use warnings;
 use strict;
 
-use version; our $VERSION = qv('v0.1.2');
+use version; our $VERSION = qv('v0.1_3');
 
 1;
 
@@ -34,7 +48,7 @@ XML::NewsML_G2 - generate NewsML-G2 news items
 
 =head1 VERSION
 
-v0.1.2
+vvv0.1_3
 
 =begin readme
 
@@ -55,8 +69,8 @@ To install this module, run the following commands:
 =head1 SYNOPSIS
 
     use XML::NewsML_G2;
-    my $ni = XML::NewsML_G2::News_Item->new(%args);
-    my $writer = XML::NewsML_G2::Writer_2_12(news_item => $ni);
+    my $ni = XML::NewsML_G2::News_Item_Text->new(%args);
+    my $writer = XML::NewsML_G2::Writer_2_18(news_item => $ni);
     my $dom = $writer->create_dom();
 
 
@@ -72,18 +86,18 @@ L<http://www.iptc.org/site/News_Exchange_Formats/NewsML-G2/>
 
 =head1 CURRENT STATUS
 
-The implementation currently support text items only - no support for
-images, videos, graphics or multimedia packages yet.
+The implementation currently supports text, picture, video, audio,
+graphics, as well as multimedia packages.
 
-Version 2.9 of the standard is frozen, so the output should not change
-when you update this distribution. Version 2.12 however is not yet
-frozen, changes in the output are to be expected.
+Versions 2.9 and 2.12 of the standard are frozen, so the output should
+not change when you update this distribution. Version 2.18 however is
+not yet frozen, changes in the output are to be expected.
 
 =head1 SCHEMES AND CATALOGS
 
 Before starting to use schemes or catalogs with this module, read the
 chapter 13 of the
-L<NewsML-G2 implementation guide|http://www.iptc.org/std/NewsML-G2/2.12/documentation/IPTC-G2-Implementation_Guide_5.0.pdf>.
+L<NewsML-G2 implementation guide|http://www.iptc.org/std/NewsML-G2/2.17/documentation/IPTC-G2-Implementation_Guide_6.1.pdf>.
 Go on, do it now. I'll wait.
 
 You don't need to use either schemes or catalogs in order to use this
@@ -174,6 +188,8 @@ and the inline catalog will be replaced with a link:
 
 =item L<XML::NewsML_G2::Writer_2_12>
 
+=item L<XML::NewsML_G2::Writer_2_18>
+
 =back
 
 =head1 DEPENDENCIES
@@ -206,7 +222,7 @@ Philipp Gortan  C<< <philipp.gortan@apa.at> >>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2013, APA-IT. All rights reserved.
+Copyright (c) 2013-2014, APA-IT. All rights reserved.
 
 This module is free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the

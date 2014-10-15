@@ -1,6 +1,6 @@
 package NewsML_G2_Test_Helpers;
 
-# $Id: NewsML_G2_Test_Helpers.pm 47068 2013-07-03 12:17:55Z apatecgortan $
+# $Id: NewsML_G2_Test_Helpers.pm 57048 2014-10-15 15:31:35Z apatechrdlicka $
 
 use Exporter 'import';
 use File::Spec::Functions qw(catfile);
@@ -14,20 +14,23 @@ use strict;
 
 use XML::NewsML_G2;
 
-our @EXPORT_OK = qw(validate_g2 create_ni);
+our @EXPORT_OK = qw(validate_g2 create_ni_text create_ni_picture create_ni_video create_ni_audio create_ni_graphics test_ni_picture test_ni_versions);
 
-our %EXPORT_TAGS = (vars => [qw($guid $see_also_guid $embargo $apa_id
-    $title $subtitle $slugline $embargo_text $note $prov_apa
-    $svc_apa_bd $time1 $time2 @text @genres $org $desk)]);
+our %EXPORT_TAGS = (vars => [qw($guid_text $guid_picture
+    $see_also_guid $embargo $apa_id $title $subtitle $slugline
+    $creditline $embargo_text $note $prov_apa $svc_apa_bd $time1
+    $time2 @text @genres $org $desk @keywords)]);
 
 Exporter::export_ok_tags('vars');
 
-our $guid = 'urn:newsml:apa.at:20120315:APA0379';
+our $guid_text = 'urn:newsml:apa.at:20120315:APA0379';
+our $guid_picture = 'urn:newsml:apa.at:20120315:ABD0111';
 our $see_also_guid = 'urn:newsml:apa.at:20120315:APA0123';
 our $apa_id = 'APA0379';
 our $title = 'Saisonstart im Schweizerhaus: Run aufs Krügerl im Prater';
 our $subtitle = 'Großer Andrang am Eröffnungstag - Auch der Rummelplatz startsete heute den Betrieb';
 our $slugline = 'Buntes/Freizeit/Bauten/Eröffnung/Unterhaltung/Wien/Kommunales';
+our $creditline = 'APA/John Doe';
 our $embargo = '2012-03-15T12:00:00+01:00';
 our $embargo_text = 'frei für Dienstagsausgaben';
 our $note = 'Bilder zum Schweizerhaus sind im AOM, z.B. ABD0019 vom 23. März 2006, abrufbar';
@@ -50,8 +53,15 @@ $mt20000553->add_translation('en', 'leisure venue');
 $mt20000553->parent($mt20000538);
 
 ok(our $prov_apa = XML::NewsML_G2::Provider->new
-   (qcode => 'apa', name => 'APA - Austria Presse Agentur'
+   (qcode => 'apa', name => 'APA - Austria Presse Agentur',
+    notice => '(c) 2014 http://www.apa.at'
    ), 'create Provider instance');
+
+ok(our $copy_hold = XML::NewsML_G2::Copyright_Holder->new
+    (qcode => '1235', name => 'Franklin D. Roosevelt',
+        notice => '(c) 2014 http://www.apa.at',
+        uri => 'http://www.apa.at'
+    ), 'create copyright holder instance');
 
 ok(our $svc_apa_bd = XML::NewsML_G2::Service->new
    (qcode => 'bd', name => 'Basisdienst'
@@ -93,6 +103,7 @@ $aut->parent($europe);
 ok(my $topic = XML::NewsML_G2::Topic->new(name => 'Budget 2012', qcode => 'bbbb'), 'create Topic');
 ok(my $product = XML::NewsML_G2::Product->new(isbn => 3442162637), 'create Product');
 
+our @keywords = qw(beer vienna prater kolarik schweizerhaus);
 
 {
     local $/ = undef;
@@ -102,31 +113,31 @@ ok(my $product = XML::NewsML_G2::Product->new(isbn => 3442162637), 'create Produ
 
 sub validate_g2 {
     my ($dom, $version) = @_;
+    $version =~ s/\./_/;
 
-  SKIP: {
-        skip 'libxml2 before 2.8 reports bogus violation on children of "broader"', 2 if (20800 > XML::LibXML::LIBXML_RUNTIME_VERSION);
-        $version =~ tr/./_/;
-        my $xsd = catfile('t', 'xsds', "NewsML-G2_$version-spec-All-Power.xsd");
-        ok(my $xmlschema = XML::LibXML::Schema->new(location => $xsd), "parsing $version XSD");
+    my $xsd = catfile('t', 'xsds', "NewsML-G2_$version-spec-All-Power.xsd");
+    ok(my $xmlschema = XML::LibXML::Schema->new(location => $xsd), "parsing $version XSD");
 
-        lives_ok(sub {$xmlschema->validate($dom)}, "XML validates against $version XSD");
-    }
+    lives_ok(sub {$xmlschema->validate($dom)}, "XML validates against $version XSD");
 
     return;
 }
 
-sub create_ni {
+sub _create_ni {
+    my $ni_cls = shift;
+    my $hash  = shift;
     my %opts = @_;
 
-    my %hash;
-    $hash{service} = $svc_apa_bd unless ($opts{no_required_scheme});
+    $hash->{service} = $svc_apa_bd unless ($opts{no_required_scheme});
 
-    ok(my $ni = XML::NewsML_G2::News_Item->new
-       (guid             => $guid,
+    ok(my $ni = $ni_cls->new
+       (guid             => $guid_text, # overwrite in $hash
         see_also         => $see_also_guid,
         provider         => $prov_apa,
+        copyright_holder => $copy_hold,
+        usage_terms      => 'view only with a full beer',
         message_id       => $apa_id,
-        title            => $title,
+        title            => ($opts{id} ? "$title $opts{id}" : $title),
         subtitle         => $subtitle,
         slugline         => $slugline,
         embargo          => DateTime::Format::XSD->parse_datetime($embargo),
@@ -134,9 +145,10 @@ sub create_ni {
         language         => 'de',
         note             => $note,
         closing          => 'Schluss',
+        credit           => $creditline,
         content_created  => DateTime::Format::XSD->parse_datetime($time1),
         content_modified => DateTime::Format::XSD->parse_datetime($time2),
-        %hash
+        %$hash
        ), 'create News Item instance');
 
     ok($ni->add_genre(@genres), 'add_genre works');
@@ -147,6 +159,8 @@ sub create_ni {
 
     $ni->add_author($_) foreach (qw(dw dk wh));
     ok($ni->authors, 'add_author works');
+
+    $ni->add_keyword($_) foreach (@keywords);
 
     ok($ni->add_media_topic($mt20000553), 'adding media topic');
     ok(!$ni->add_media_topic($mt20000553), 'adding media topic again fails');
@@ -170,6 +184,113 @@ sub create_ni {
     }
 
     return $ni;
+}
+
+sub create_ni_text {
+    _create_ni('XML::NewsML_G2::News_Item_Text', {}, @_);
+}
+
+sub create_ni_picture {
+    _create_ni(
+        'XML::NewsML_G2::News_Item_Picture',
+        {photographer => 'Homer Simpson', guid => $guid_picture}, @_
+        );
+}
+
+sub create_ni_graphics {
+    _create_ni(
+        'XML::NewsML_G2::News_Item_Graphics',
+        {photographer => 'Homer Simpson'}, @_
+        );
+}
+
+sub create_ni_video {
+    _create_ni('XML::NewsML_G2::News_Item_Video', @_);
+}
+
+sub create_ni_audio {
+    _create_ni('XML::NewsML_G2::News_Item_Audio', @_);
+}
+
+sub _picture_checks {
+    my ($dom, $xpc, $version) = @_;
+
+    like($xpc->findvalue('//nar:contentSet/nar:remoteContent/@rendition'), qr|rnd:highRes|, 'correct rendition in XML');
+    like($xpc->findvalue('//nar:contentSet/nar:remoteContent/@rendition'), qr|rnd:thumb|, 'correct rendition in XML');
+    like($xpc->findvalue('//nar:contentSet/nar:remoteContent/@href'), qr|file://tmp/files/123.*jpg|, 'correct href in XML');
+    like($xpc->findvalue('//nar:contentSet/nar:remoteContent/@contenttype'), qr|image/jpg|, 'correct mimetype in XML');
+    like($xpc->findvalue('//nar:description'), qr|ricebag.*over|, 'correct description');
+    like($xpc->findvalue('//nar:description'), qr|ricebag.*over|, 'correct description');
+
+    return;
+}
+
+sub test_ni_versions {
+    my ($ni, $sm, %version_checks) = @_;
+
+    for my $version (qw/2.9 2.12 2.18/) {
+        ok(my $writer = XML::NewsML_G2::Writer::News_Item->new(news_item => $ni, scheme_manager => $sm, g2_version => $version), "creating $version writer");
+        ok(my $dom = $writer->create_dom(), 'create DOM');
+        ok(my $xpc = XML::LibXML::XPathContext->new($dom), 'create XPath context for DOM tree');
+        $xpc->registerNs('nar', 'http://iptc.org/std/nar/2006-10-01/');
+        $xpc->registerNs('xhtml', 'http://www.w3.org/1999/xhtml');
+        my $version_check=$version_checks{$version} || $version_checks{'*'};
+        $version_check->($dom, $writer, $xpc, $version);
+        validate_g2($dom, $version);
+        # diag($dom->serialize(1));
+    }
+}
+
+sub _old_style_name_check {
+    my $xpc = shift;
+    like($xpc->findvalue('//nar:creator/@literal'), qr/Homer Simpson/, "correct photographer in XML, 2.9-style");
+    like($xpc->findvalue('//nar:creator/@literal'), qr/dw.*dk.*wh/, "correct authors in XML, 2.9-style");
+    return;
+}
+
+sub _new_style_name_check {
+    my $xpc = shift;
+    like($xpc->findvalue('//nar:creator/nar:name'), qr/dw.*dk.*wh/, 'correct authors in XML, 2.12+-style');
+    like($xpc->findvalue('//nar:creator/nar:name'), qr/Homer Simpson/, 'correct photographer in XML, 2.12+-style');
+    return;
+}
+
+
+sub test_ni_picture {
+    my ($ni) = @_;
+
+    my %schemes;
+    foreach (qw(crel desk geo svc role ind org topic hltype)) {
+        $schemes{$_} = XML::NewsML_G2::Scheme->new(alias => "apa$_", uri => "http://cv.apa.at/$_/");
+    }
+
+    ok(my $sm = XML::NewsML_G2::Scheme_Manager->new(%schemes), 'create Scheme Manager');
+    $ni->caption('A ricebag is about to fall over');
+
+    my $pic = XML::NewsML_G2::Picture->new(mimetype => 'image/jpg', width => 1600, height => 1024, rendition => 'highRes');
+    my $thumb = XML::NewsML_G2::Picture->new(mimetype => 'image/jpg', width => 48, height => 32, rendition => 'thumb');
+
+    ok($ni->add_remote('file://tmp/files/123.jpg', $pic), 'Adding remote picture works');
+    ok($ni->add_remote('file://tmp/files/123.thumb.jpg', $thumb), 'Adding remote thumbnail works');
+
+    test_ni_versions($ni, $sm,
+                     '2.9' => sub {
+                         my ($dom, $writer, $xpc, $version) = @_;
+                         _picture_checks($dom, $xpc, $writer->g2_version);
+                         _old_style_name_check($xpc);
+                     },
+                     '2.12' => sub {
+                         my ($dom, $writer, $xpc, $version) = @_;
+                         _picture_checks($dom, $xpc, $writer->g2_version);
+                         _new_style_name_check($xpc);
+                     },
+                     '2.18' => sub {
+                         my ($dom, $writer, $xpc, $version) = @_;
+                         _picture_checks($dom, $xpc, $writer->g2_version);
+                         _new_style_name_check($xpc);
+                     });
+
+    return $sm;
 }
 
 1;

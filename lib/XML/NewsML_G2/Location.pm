@@ -1,12 +1,12 @@
 package XML::NewsML_G2::Location;
 
-# $Id: Location.pm 47068 2013-07-03 12:17:55Z apatecgortan $
+# $Id: Location.pm 55790 2014-08-26 18:30:30Z apatecgortan $
 
 use Moose;
 use namespace::autoclean;
 
-has 'name', isa => 'Str', is => 'ro', required => 1;
-has 'qcode', isa => 'Str', is => 'ro', required => 1;
+with 'XML::NewsML_G2::Role::HasQCode';
+
 has 'relevance', isa => 'Int', is => 'ro', required => 1;
 has 'parent', isa => __PACKAGE__, is => 'rw';
 has 'direct', isa => 'Bool', is => 'rw', default => '';
@@ -32,10 +32,6 @@ XML::NewsML_G2::Location - a location (city, region, country, ...)
 =head1 ATTRIBUTES
 
 =over 4
-
-=item name
-
-=item qcode
 
 =item relevance
 
@@ -63,6 +59,6 @@ Philipp Gortan  C<< <philipp.gortan@apa.at> >>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2013, APA-IT. All rights reserved.
+Copyright (c) 2013-2014, APA-IT. All rights reserved.
 
 See L<XML::NewsML_G2> for the license.

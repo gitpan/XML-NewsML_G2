@@ -1,24 +1,29 @@
-# $Id: Build.PL 47003 2013-06-28 18:13:31Z apatecgortan $
+# $Id: Build.PL 57021 2014-10-15 08:02:43Z apatecgortan $
 
 use strict;
 use warnings;
 use Module::Build 0.4004;
 
+my @authors = map {(my $mail = lc) =~ tr/a-z/./cs; "$_ <$mail\@apa.at>" }
+('Philipp Gortan', 'Mario Paumann', 'Christian Eder', 'Stefan Hrdlicka');
+
 my $builder = Module::Build->new
   (module_name         => 'XML::NewsML_G2',
    license             => 'gpl',
-   dist_author         => 'Philipp Gortan <philipp.gortan@apa.at>',
+   dist_author         => \@authors,
    dist_abstract       => 'generate NewsML-G2 news items',
    dist_version_from   => 'lib/XML/NewsML_G2.pm',
    requires =>
    { 'perl'                  => '5.8.0',
-     'version'               => 0.77,
-     'Moose'                 => 0.64,
-     'namespace::autoclean'  => 0.05,
+     'version'               => '0.77',
+     'Moose'                 => '0.64',
+     'Moose::Util'           => '0.64',
+     'namespace::autoclean'  => '0.05',
      'XML::LibXML'           => 0,
      'DateTime'              => 0,
      'DateTime::Format::XSD' => 0,
-     'UUID::Tiny'            => 1.02,
+     'Module::Runtime'       => 0,
+     'UUID::Tiny'            => '1.02',
    },
    configure_requires =>
    { 'Module::Build' => 0.4004 # support for test_requires

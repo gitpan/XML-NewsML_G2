@@ -1,44 +1,34 @@
 package XML::NewsML_G2::News_Item;
 
-# $Id: News_Item.pm 47068 2013-07-03 12:17:55Z apatecgortan $
+# $Id: News_Item.pm 55807 2014-08-27 11:23:31Z apatecederc $
 
 use XML::LibXML qw();
-use UUID::Tiny ':std';
 
+use Carp;
 use Moose;
 use namespace::autoclean;
 
 
-has 'language', isa => 'Str', is => 'ro', required => 1;
-
 # document properties
-has 'guid', isa => 'Str', is => 'ro', default => sub {create_uuid_as_string()};
-has 'doc_version', isa => 'Int', is => 'ro', default => '1';
-has 'provider', isa => 'XML::NewsML_G2::Provider', is => 'ro', required => 1;
-has 'service', isa => 'XML::NewsML_G2::Service', is => 'ro', predicate => 'has_service';
-has 'doc_status', isa => 'Str', is => 'ro', default => 'usable';
+extends 'XML::NewsML_G2::AnyItem';
+
 has 'title', isa => 'Str', is => 'ro', required => 1;
 has 'subtitle', isa => 'Str', is => 'rw';
+has 'caption', isa => 'Str', is => 'rw';
 has 'paragraphs', isa => 'XML::LibXML::Node', is => 'rw';
-has 'content_created', isa => 'DateTime', is => 'ro', default => sub {DateTime->now()};
+has 'content_created', isa => 'DateTime', is => 'ro', lazy => 1, builder => '_build_content_created';
 has 'content_modified', isa => 'DateTime', is => 'ro';
-has 'embargo', isa => 'DateTime', is => 'rw';
-has 'embargo_text', isa => 'Str', is => 'rw';
 
+has 'credit', isa => 'Str', is => 'rw';
 has 'priority', isa => 'Int', is => 'ro', default => 5;
 has 'message_id', isa => 'Str', is => 'ro';
 has 'slugline', isa => 'Str', is => 'ro';
 has 'slugline_sep', isa => 'Str', is => 'ro', default => '/';
-has 'note', isa => 'Str', is => 'ro';
-has 'closing', isa => 'Str', is => 'rw';
-has 'see_also', isa => 'Str', is => 'rw';
 
 has 'sources', isa => 'ArrayRef[Str]', is => 'rw', default => sub { [] },
   traits => ['Array'], handles => {add_source => 'push'};
 has 'authors', isa => 'ArrayRef[Str]', is => 'rw', default => sub { [] },
   traits => ['Array'], handles => {add_author => 'push'};
-has 'indicators', isa => 'ArrayRef[Str]', is => 'rw', default => sub { [] },
-  traits => ['Array'], handles => {add_indicator => 'push'};
 has 'cities', isa => 'ArrayRef[Str]', is => 'rw', default => sub { [] },
   traits => ['Array'], handles => {add_city => 'push'};
 
@@ -56,7 +46,15 @@ has 'media_topics', isa => 'HashRef[XML::NewsML_G2::Media_Topic]', is => 'rw', d
   traits => ['Hash'], handles => {has_media_topics => 'count'};
 has 'locations', isa => 'HashRef[XML::NewsML_G2::Location]', is => 'rw', default => sub { {} },
   traits => ['Hash'], handles => {has_locations => 'count'};
+has 'keywords', isa => 'ArrayRef[Str]', is => 'rw', default => sub { [] },
+    traits => ['Array'],
+    handles => {add_keyword => 'push', has_keywords => 'count'};
+has 'remotes', isa => 'HashRef', is => 'rw', default => sub { {} },
+    traits => ['Hash'], handles => {has_remotes => 'count'};
 
+sub _build_content_created {
+    return DateTime->now(time_zone => 'local');
+}
 
 # public methods
 
@@ -89,6 +87,14 @@ sub add_paragraph {
     return 1;
 }
 
+sub add_remote {
+    my ($self, $uri, $remote) = @_;
+    return if exists $self->remotes->{$uri};
+    $self->remotes->{$uri} = $remote;
+
+    return 1;
+}
+
 __PACKAGE__->meta->make_immutable;
 
 1;
@@ -101,21 +107,11 @@ XML::NewsML_G2::News_Item - a news item (story)
 =for test_synopsis
     my ($provider, $service, $genre1, $genre2);
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
-    my $ni = XML::NewsML_G2::News_Item->new
-        (guid => "tag:example.com,2013:service:date:number",
-         title => "Story title",
-         slugline => "the/slugline",
-         language => 'de',
-         provider => $provider,
-         service => $service,
-        );
-
-    $ni->add_genre($genre1, $genre2);
-    $ni->add_source('APA');
-    $ni->add_paragraph('blah blah blah');
-
+This module acts as a base class for NewsML-G2 news items.
+Instead of using this class, use the most appropriate subclass,
+e.g. L<XML::NewsML_G2::News_Item_Text>.
 
 =head1 ATTRIBUTES
 
@@ -141,6 +137,14 @@ DateTime instance, defaults to now
 =item content_modified
 
 DateTime instance
+
+=item credit
+
+Human readable credit line
+
+=item caption
+
+Human readable content description string
 
 =item desks
 
@@ -218,6 +222,10 @@ List of L<XML::NewsML_G2::Product> instances
 
 List of L<XML::NewsML_G2::Provider> instances
 
+=item remotes
+
+Hash mapping of hrefs to remote object (e.g. XML::NewsML_G2::Picture) instances
+
 =item see_also
 
 Free-format string
@@ -249,6 +257,10 @@ Title string
 =item topics
 
 List of L<XML::NewsML_G2::Topic> instances
+
+=item usage_terms
+
+String containing human readable usage terms
 
 =back
 
@@ -299,6 +311,10 @@ created by yourself.
 
 Add a new L<XML::NewsML_G2::Product> instance
 
+=item add_remote
+
+Add a new remote instance (e.g. XML::NewsML_G2::Picture) with a given href
+
 =item add_source
 
 Add a string to the sources
@@ -315,6 +331,6 @@ Philipp Gortan  C<< <philipp.gortan@apa.at> >>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2013, APA-IT. All rights reserved.
+Copyright (c) 2013-2014, APA-IT. All rights reserved.
 
 See L<XML::NewsML_G2> for the license.

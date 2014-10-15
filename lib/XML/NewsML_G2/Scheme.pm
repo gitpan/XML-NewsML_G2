@@ -1,6 +1,6 @@
 package XML::NewsML_G2::Scheme;
 
-# $Id: Scheme.pm 46929 2013-06-25 08:32:49Z apatecgortan $
+# $Id: Scheme.pm 55765 2014-08-26 09:29:10Z apatecederc $
 
 use Moose;
 use namespace::autoclean;
@@ -56,6 +56,6 @@ Philipp Gortan  C<< <philipp.gortan@apa.at> >>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2013, APA-IT. All rights reserved.
+Copyright (c) 2013-2014, APA-IT. All rights reserved.
 
 See L<XML::NewsML_G2> for the license.

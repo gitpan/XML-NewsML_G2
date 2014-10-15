@@ -1,14 +1,16 @@
 package XML::NewsML_G2::Scheme_Manager;
 
-# $Id: Scheme_Manager.pm 47068 2013-07-03 12:17:55Z apatecgortan $
+# $Id: Scheme_Manager.pm 57048 2014-10-15 15:31:35Z apatechrdlicka $
 
 use Moose;
 use Carp;
 use namespace::autoclean;
 
+my @attrs = (qw(desk hltype role ind geo org topic crel crol drol svc
+isbn ean isrol nprov ninat stat sig iso3166_1a2 genre isin medtop rnd
+colsp loutorient adc group pgrmod em));
 
-foreach (qw(desk hltype role ind geo org topic crel svc isbn ean isrol
-nprov ninat stat sig iso3166_1a2 genre isin medtop)) {
+foreach (@attrs) {
     has $_, isa => 'XML::NewsML_G2::Scheme', is => 'rw';
 }
 
@@ -17,7 +19,18 @@ nprov ninat stat sig iso3166_1a2 genre isin medtop)) {
 sub get_all_schemes {
     my $self = shift;
 
-    return grep {defined} map {$self->can($_)->($self)} sort $self->meta->get_attribute_list();
+    return grep {defined} map {$self->$_()} sort $self->meta->get_attribute_list();
+}
+
+sub build_qcode {
+    my ($self, $name, $value) = @_;
+    return unless $value;
+
+    my $getter = $self->can($name) or croak "No schema named '$name'!";
+    my $scheme = $getter->($self);
+    return unless ($scheme and ($scheme->uri or $scheme->catalog));
+
+    return $scheme->alias . ':' . $value;
 }
 
 sub add_qcode_or_literal {
@@ -34,11 +47,11 @@ sub add_qcode {
 
 sub add_role {
     my ($self, $elem, $name, $value) = @_;
-    my $getter = $self->can($name) or croak "No schema named '$name'!";
-    my $scheme = $getter->($self);
-    return unless $scheme;
 
-    $elem->setAttribute('role', $scheme->alias . ':' . $value);
+    my $role = $self->build_qcode($name, $value);
+    return unless $role;
+
+    $elem->setAttribute('role', $role);
     return 1;
 }
 
@@ -47,11 +60,10 @@ sub add_role {
 sub _add_qcode {
     my ($self, $elem, $name, $value) = @_;
 
-    my $getter = $self->can($name) or croak "No schema named '$name'!";
-    my $scheme = $getter->($self);
-    return unless ($scheme and ($scheme->uri or $scheme->catalog));
+    my $qcode = $self->build_qcode($name, $value);
+    return unless $qcode;
 
-    $elem->setAttribute('qcode', $scheme->alias . ':' . $value);
+    $elem->setAttribute('qcode', $qcode);
     return 1;
 }
 
@@ -151,6 +163,15 @@ Scheme for topics
 
 Returns a list of all registered L<XML::NewsML_G2::Scheme> instances
 
+=item build_qcode
+
+Build a qcode of the given scheme
+
+    $scheme_manager->build_qcode('ninat', 'text');
+
+If the schema does not provide a catalog or URI, creating a qcode is
+not possible, and this method will return undef.
+
 =item add_qcode
 
 Add a qcode attribute of the given scheme to the XML element:
@@ -180,6 +201,6 @@ Philipp Gortan  C<< <philipp.gortan@apa.at> >>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2013, APA-IT. All rights reserved.
+Copyright (c) 2013-2014, APA-IT. All rights reserved.
 
 See L<XML::NewsML_G2> for the license.

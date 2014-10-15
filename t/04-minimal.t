@@ -1,6 +1,6 @@
-#! /usr/bin/perl
+#!/usr/bin/env perl
 
-# $Id: 04-minimal.t 47068 2013-07-03 12:17:55Z apatecgortan $
+# $Id: 04-minimal.t 55964 2014-09-03 09:32:05Z apatecgortan $
 
 use utf8;
 use Test::More;
@@ -17,7 +17,7 @@ ok(my $prov_apa = XML::NewsML_G2::Provider->new
   (qcode => 'apa', name => 'APA - Austria Presse Agentur'
   ), 'create Provider instance');
 
-ok(my $ni = XML::NewsML_G2::News_Item->new
+ok(my $ni = XML::NewsML_G2::News_Item_Text->new
    (title => 'Saisonstart im Schweizerhaus: Run aufs Krügerl im Prater',
     language => 'de',
     provider => $prov_apa,
@@ -25,11 +25,11 @@ ok(my $ni = XML::NewsML_G2::News_Item->new
 
 ok($ni->add_paragraph('Die Saison im Wiener Prater hat am Donnerstagvormittag mit der Eröffnung des Schweizerhauses begonnen - diese findet traditionell jedes Jahr am 15. März statt.'), 'add_paragraph works');
 
-my $writer = XML::NewsML_G2::Writer_2_12->new(news_item => $ni);
+my $writer = XML::NewsML_G2::Writer::News_Item->new(news_item => $ni);
 ok(my $dom = $writer->create_dom(), 'create DOM');
 
-diag($dom->serialize(1));
+#diag($dom->serialize(1));
 
-validate_g2($dom, '2.12');
+validate_g2($dom, '2.18');
 
 done_testing;

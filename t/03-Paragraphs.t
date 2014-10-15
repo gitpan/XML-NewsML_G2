@@ -1,6 +1,6 @@
-#! /usr/bin/perl
+#!/usr/bin/env perl
 
-# $Id: 03-Paragraphs.t 47068 2013-07-03 12:17:55Z apatecgortan $
+# $Id: 03-Paragraphs.t 55792 2014-08-26 18:30:31Z apatecgortan $
 
 use utf8;
 use Test::More;
@@ -13,9 +13,9 @@ use strict;
 use XML::NewsML_G2;
 
 use lib 't';
-use NewsML_G2_Test_Helpers qw(create_ni @text);
+use NewsML_G2_Test_Helpers qw(create_ni_text @text);
 
-my $ni = create_ni();
+my $ni = create_ni_text();
 
 ok($ni->add_paragraph($text[0]), 'add_paragraph returns OK');
 ok($ni->add_paragraph($text[1]), 'add_paragraph returns OK again');
@@ -27,7 +27,7 @@ foreach (qw(crel desk geo svc role ind org topic hltype)) {
 
 ok(my $sm = XML::NewsML_G2::Scheme_Manager->new(%schemes), 'create Scheme Manager');
 
-my $writer = XML::NewsML_G2::Writer_2_12->new(news_item => $ni, scheme_manager => $sm);
+my $writer = XML::NewsML_G2::Writer::News_Item->new(news_item => $ni, scheme_manager => $sm);
 
 ok(my $dom = $writer->create_dom(), 'create DOM');
 

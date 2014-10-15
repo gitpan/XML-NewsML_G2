@@ -1,13 +1,11 @@
 package XML::NewsML_G2::Topic;
 
-# $Id: Topic.pm 46519 2013-05-31 15:38:08Z apatecgortan $
+# $Id: Topic.pm 55790 2014-08-26 18:30:30Z apatecgortan $
 
 use Moose;
 use namespace::autoclean;
 
-
-has 'name', isa => 'Str', is => 'ro', required => 1;
-has 'qcode', isa => 'Str', is => 'ro', required => 1;
+with 'XML::NewsML_G2::Role::HasQCode';
 
 __PACKAGE__->meta->make_immutable;
 
@@ -23,22 +21,12 @@ used to group related stories
 
     my $topic = XML::NewsML_G2::Topic->new(name => 'Swine Flu', qcode => 'h1n1');
 
-=head1 ATTRIBUTES
-
-=over 4
-
-=item name
-
-=item qcode
-
-=back
-
 =head1 AUTHOR
 
 Philipp Gortan  C<< <philipp.gortan@apa.at> >>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2013, APA-IT. All rights reserved.
+Copyright (c) 2013-2014, APA-IT. All rights reserved.
 
 See L<XML::NewsML_G2> for the license.
