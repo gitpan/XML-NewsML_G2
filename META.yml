@@ -20,7 +20,7 @@ name: XML-NewsML_G2
 provides:
   XML::NewsML_G2:
     file: lib/XML/NewsML_G2.pm
-    version: v0.1_3
+    version: v0.1_4
   XML::NewsML_G2::AnyItem:
     file: lib/XML/NewsML_G2/AnyItem.pm
   XML::NewsML_G2::Audio:
@@ -128,4 +128,4 @@ requires:
   version: 0.77
 resources:
   license: http://www.gnu.org/licenses/old-licenses/gpl-1.0.txt
-version: v0.1_3
+version: v0.1_4
