@@ -9,7 +9,7 @@
    "dynamic_config" : 1,
    "generated_by" : "Module::Build version 0.4204",
    "license" : [
-      "gpl_1"
+      "gpl_2"
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
@@ -46,7 +46,7 @@
    "provides" : {
       "XML::NewsML_G2" : {
          "file" : "lib/XML/NewsML_G2.pm",
-         "version" : "v0.1_4"
+         "version" : "v0.2.0"
       },
       "XML::NewsML_G2::AnyItem" : {
          "file" : "lib/XML/NewsML_G2/AnyItem.pm"
@@ -153,8 +153,11 @@
       "XML::NewsML_G2::Role::Writer_2_12" : {
          "file" : "lib/XML/NewsML_G2/Role/Writer_2_12.pm"
       },
-      "XML::NewsML_G2::Role::Writer_2_18" : {
-         "file" : "lib/XML/NewsML_G2/Role/Writer_2_18.pm"
+      "XML::NewsML_G2::Role::Writer_2_15" : {
+         "file" : "lib/XML/NewsML_G2/Role/Writer_2_15.pm"
+      },
+      "XML::NewsML_G2::Role::Writer_2_17" : {
+         "file" : "lib/XML/NewsML_G2/Role/Writer_2_17.pm"
       },
       "XML::NewsML_G2::Role::Writer_2_9" : {
          "file" : "lib/XML/NewsML_G2/Role/Writer_2_9.pm"
@@ -190,11 +193,14 @@
          "file" : "lib/XML/NewsML_G2/Writer/Package_Item.pm"
       }
    },
-   "release_status" : "testing",
+   "release_status" : "stable",
    "resources" : {
+      "bugtracker" : {
+         "web" : "https://rt.cpan.org/Public/Dist/Display.html?Name=XML-NewsML_G2"
+      },
       "license" : [
-         "http://www.gnu.org/licenses/old-licenses/gpl-1.0.txt"
+         "http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt"
       ]
    },
-   "version" : "v0.1_4"
+   "version" : "v0.2.0"
 }

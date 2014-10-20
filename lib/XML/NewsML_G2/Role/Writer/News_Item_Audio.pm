@@ -1,6 +1,6 @@
 package XML::NewsML_G2::Role::Writer::News_Item_Audio;
 
-# $Id: News_Item_Audio.pm 57056 2014-10-15 16:26:09Z apatecgortan $
+# $Id: News_Item_Audio.pm 57189 2014-10-17 13:06:59Z apatechrdlicka $
 
 use Moose::Role;
 use namespace::autoclean;
@@ -15,7 +15,7 @@ around '_build_g2_catalog_schemes' => sub {
 };
 
 
-sub _create_remote_content {
+after '_create_remote_content' => sub {
     my ($self, $root, $audio) = @_;
 
     for (qw/size duration audiosamplerate/) {
@@ -25,7 +25,7 @@ sub _create_remote_content {
     my $audiochannels = $self->scheme_manager->build_qcode('adc', $audio->audiochannels);
     $root->setAttribute('audiochannels', $audiochannels) if $audiochannels;
     return;
-}
+};
 
 1;
 __END__

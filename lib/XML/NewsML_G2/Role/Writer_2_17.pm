@@ -1,6 +1,6 @@
-package XML::NewsML_G2::Role::Writer_2_18;
+package XML::NewsML_G2::Role::Writer_2_17;
 
-# $Id: Writer_2_18.pm 55964 2014-09-03 09:32:05Z apatecgortan $
+# $Id: Writer_2_17.pm 57216 2014-10-20 12:16:23Z apatecgortan $
 
 use Moose::Role;
 
@@ -13,7 +13,7 @@ __END__
 
 =head1 NAME
 
-XML::NewsML_G2::Role::Writer_2_18 - create XML DOM tree conforming to version 2.18 of the NewsML-G2 specification
+XML::NewsML_G2::Role::Writer_2_17 - create XML DOM tree conforming to version 2.17 of the NewsML-G2 specification
 
 Check the documentation of L<XML::NewsML_G2::Writer> for details.
 

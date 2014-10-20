@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-# $Id: 01-News_Item_Graphics.t 57056 2014-10-15 16:26:09Z apatecgortan $
+# $Id: 01-News_Item_Graphics.t 57215 2014-10-20 12:16:22Z apatecgortan $
 
 use utf8;
 use Test::More;
@@ -25,7 +25,7 @@ ok($ni->add_remote('file://tmp/files/123.ai', $graphics), 'Adding remote graphic
 
 my $sm = test_ni_picture($ni);
 test_ni_versions($ni, $sm, '*' => sub {
-    my ($dom, $writer, $xpc, $version) = @_;
+    my ($dom, $xpc, $version) = @_;
     is($xpc->findvalue('//nar:contentSet/nar:remoteContent/nar:altId'), '1031-14-Wetter', 'correct Graphics altId in XML');
     like($xpc->findvalue('//nar:contentSet/nar:remoteContent/@contenttype'), qr|application/illustrator|, 'graphics mimetype in XML');
                  });

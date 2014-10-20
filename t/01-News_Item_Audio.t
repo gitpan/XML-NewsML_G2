@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-# $Id: 01-News_Item_Audio.t 57056 2014-10-15 16:26:09Z apatecgortan $
+# $Id: 01-News_Item_Audio.t 57216 2014-10-20 12:16:23Z apatecgortan $
 
 use utf8;
 use Test::More;
@@ -50,15 +50,16 @@ $xpc->registerNs('xhtml', 'http://www.w3.org/1999/xhtml');
 remotes_checks($dom, $xpc);
 validate_g2($dom, '2.9');
 
-# 2.18 checks
-ok($writer = XML::NewsML_G2::Writer::News_Item->new(news_item => $ni, scheme_manager => $sm, g2_version => 2.18), 'creating 2.18 writer');
-ok($dom = $writer->create_dom(), '2.18 writer creates DOM');
-ok($xpc = XML::LibXML::XPathContext->new($dom), 'create XPath context for DOM tree');
-$xpc->registerNs('nar', 'http://iptc.org/std/nar/2006-10-01/');
-$xpc->registerNs('xhtml', 'http://www.w3.org/1999/xhtml');
-remotes_checks($dom, $xpc);
-validate_g2($dom, '2.18');
-
-#diag($dom->serialize(1));
+# 2.12 2.15 2.17 checks
+for my $version (qw(2.12 2.15 2.17)) {
+    ok($writer = XML::NewsML_G2::Writer::News_Item->new(news_item => $ni, scheme_manager => $sm, g2_version => $version), "creating $version writer");
+    ok($dom = $writer->create_dom(), "$version writer creates DOM");
+    ok($xpc = XML::LibXML::XPathContext->new($dom), 'create XPath context for DOM tree');
+    $xpc->registerNs('nar', 'http://iptc.org/std/nar/2006-10-01/');
+    $xpc->registerNs('xhtml', 'http://www.w3.org/1999/xhtml');
+    remotes_checks($dom, $xpc);
+    validate_g2($dom, $version);
+    #diag($dom->serialize(1));
+}
 
 done_testing;

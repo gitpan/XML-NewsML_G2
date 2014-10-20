@@ -1,6 +1,6 @@
 package XML::NewsML_G2::Writer::News_Message;
 
-# $Id: News_Message.pm 57056 2014-10-15 16:26:09Z apatecgortan $
+# $Id: News_Message.pm 57216 2014-10-20 12:16:23Z apatecgortan $
 
 use Moose;
 
@@ -90,7 +90,7 @@ NewsML-G2 for News Messages
 =head1 SYNOPSIS
 
     my $w = XML::NewsML_G2::Writer::News_Message->new
-        (news_message => $nm, scheme_manager => $sm, g2_version => 2.18);
+        (news_message => $nm, scheme_manager => $sm, g2_version => 2.15);
 
     my $dom = $w->create_dom();
 

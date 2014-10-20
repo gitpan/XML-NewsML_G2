@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-# $Id: 06-add-schema-catalog.t 55964 2014-09-03 09:32:05Z apatecgortan $
+# $Id: 06-add-schema-catalog.t 57216 2014-10-20 12:16:23Z apatecgortan $
 
 use utf8;
 use Test::More;
@@ -44,7 +44,7 @@ sub create_ni_text  {
 
     ok(my $dom = $writer->create_dom(), 'create DOM');
     #diag($dom->serialize(1));
-    validate_g2($dom, '2.18');
+    validate_g2($dom, '2.15');
     return;
 }
 

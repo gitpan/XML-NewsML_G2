@@ -1,6 +1,6 @@
 package XML::NewsML_G2::Writer::Package_Item;
 
-# $Id: Package_Item.pm 57055 2014-10-15 16:23:43Z apatecgortan $
+# $Id: Package_Item.pm 57216 2014-10-20 12:16:23Z apatecgortan $
 
 use Moose;
 
@@ -98,7 +98,7 @@ NewsML-G2 for Package Items
 =head1 SYNOPSIS
 
     my $w = XML::NewsML_G2::Writer::Package_Item->new
-        (package_item => $pi, scheme_manager => $sm, g2_version => 2.18);
+        (package_item => $pi, scheme_manager => $sm, g2_version => 2.15);
 
     my $p = $w->create_element('p', class => 'main', _text => 'blah');
 

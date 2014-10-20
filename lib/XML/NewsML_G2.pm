@@ -1,6 +1,6 @@
 package XML::NewsML_G2;
 
-# $Id: NewsML_G2.pm 57141 2014-10-17 07:46:22Z apatecgortan $
+# $Id: NewsML_G2.pm 57223 2014-10-20 13:44:19Z apatecgortan $
 
 use XML::NewsML_G2::News_Item;
 use XML::NewsML_G2::News_Item_Text;
@@ -35,7 +35,7 @@ use XML::NewsML_G2::Writer::News_Message;
 use warnings;
 use strict;
 
-use version; our $VERSION = qv('0.1_4');
+use version; our $VERSION = qv('0.2.0');
 
 1;
 
@@ -48,7 +48,7 @@ XML::NewsML_G2 - generate NewsML-G2 news items
 
 =head1 VERSION
 
-0.1_4
+0.2.0
 
 =begin readme
 
@@ -70,7 +70,7 @@ To install this module, run the following commands:
 
     use XML::NewsML_G2;
     my $ni = XML::NewsML_G2::News_Item_Text->new(%args);
-    my $writer = XML::NewsML_G2::Writer_2_18(news_item => $ni);
+    my $writer = XML::NewsML_G2::Writer_2_15(news_item => $ni);
     my $dom = $writer->create_dom();
 
 
@@ -78,26 +78,30 @@ To install this module, run the following commands:
 
 This module tries to implement the creation of XML files conforming to
 the NewsML-G2 specification as published by the IPTC. It does not aim
-in implementing the complete standard, but in covering the most common
-use cases.
+to implement the complete standard, but to cover the most common use
+cases in a best-practice manner.
 
 For the full specification of the format, visit
-L<http://www.iptc.org/site/News_Exchange_Formats/NewsML-G2/>
+L<http://www.iptc.org/site/News_Exchange_Formats/NewsML-G2/>. For a
+quick introduction, you might prefer the L<Quick Start
+Guides|http://www.iptc.org/download?g2quickstartguides>.
 
 =head1 CURRENT STATUS
 
 The implementation currently supports text, picture, video, audio,
-graphics, as well as multimedia packages.
+graphics, as well as multimedia packages and slideshows.
 
-Versions 2.9 and 2.12 of the standard are frozen, so the output should
-not change when you update this distribution. Version 2.18 however is
-not yet frozen, changes in the output are to be expected.
+Version 2.15 is the latest version of the standard supported by this
+software, and should be your first choice. Using versions 2.9 and 2.12
+is deprecated, and support for it will beremoved in future
+releases. Draft version 2.17 is unsupported, but will evolve into 2.18
+when it is finalised.
 
 =head1 SCHEMES AND CATALOGS
 
 Before starting to use schemes or catalogs with this module, read the
-chapter 13 of the
-L<NewsML-G2 implementation guide|http://www.iptc.org/std/NewsML-G2/2.17/documentation/IPTC-G2-Implementation_Guide_6.1.pdf>.
+chapter 13 of the L<NewsML-G2 implementation
+guide|http://www.iptc.org/std/NewsML-G2/2.17/documentation/IPTC-G2-Implementation_Guide_6.1.pdf>.
 Go on, do it now. I'll wait.
 
 You don't need to use either schemes or catalogs in order to use this
@@ -156,6 +160,8 @@ and the inline catalog will be replaced with a link:
 
 =head1 API
 
+=head2 Main Classes
+
 =over 4
 
 =item L<XML::NewsML_G2::News_Item>
@@ -176,12 +182,23 @@ and the inline catalog will be replaced with a link:
 
 =item L<XML::NewsML_G2::AnyItem>
 
+=back
 
+
+=head2 Scheme Handling
+
+=over 4
 
 =item L<XML::NewsML_G2::Scheme>
 
 =item L<XML::NewsML_G2::Scheme_Manager>
 
+=back
+
+
+=head2 Classes for Structured Data Attributes
+
+=over 4
 
 =item L<XML::NewsML_G2::Service>
 
@@ -197,11 +214,15 @@ and the inline catalog will be replaced with a link:
 
 =item L<XML::NewsML_G2::Desk>
 
+=item L<XML::NewsML_G2::Location>
+
+=item L<XML::NewsML_G2::Organisation>
+
+=item L<XML::NewsML_G2::Product>
+
 =item L<XML::NewsML_G2::Group>
 
 =item L<XML::NewsML_G2::Picture>
-
-=item L<XML::NewsML_G2::Location>
 
 =item L<XML::NewsML_G2::Graphics>
 
@@ -209,12 +230,14 @@ and the inline catalog will be replaced with a link:
 
 =item L<XML::NewsML_G2::Copyright_Holder>
 
-=item L<XML::NewsML_G2::Organisation>
-
-=item L<XML::NewsML_G2::Product>
-
 =item L<XML::NewsML_G2::Icon>
 
+=back
+
+
+=head2 Writer Classes and Roles
+
+=over 4
 
 =item L<XML::NewsML_G2::Writer>
 
@@ -224,18 +247,15 @@ and the inline catalog will be replaced with a link:
 
 =item L<XML::NewsML_G2::Writer::Package_Item>
 
-
-=item L<XML::NewsML_G2::Types>
-
-
-
 =item L<XML::NewsML_G2::Role::Writer>
 
 =item L<XML::NewsML_G2::Role::Writer_2_9>
 
 =item L<XML::NewsML_G2::Role::Writer_2_12>
 
-=item L<XML::NewsML_G2::Role::Writer_2_18>
+=item L<XML::NewsML_G2::Role::Writer_2_15>
+
+=item L<XML::NewsML_G2::Role::Writer_2_17>
 
 =item L<XML::NewsML_G2::Role::Writer::News_Item_Text>
 
@@ -251,6 +271,22 @@ and the inline catalog will be replaced with a link:
 
 =item L<XML::NewsML_G2::Role::Writer::News_Item_Graphics>
 
+=back
+
+
+=head2 Type Definitions
+
+=over 4
+
+=item L<XML::NewsML_G2::Types>
+
+=back
+
+
+=head2 Utility Roles
+
+=over 4
+
 =item L<XML::NewsML_G2::Role::HasQCode>
 
 =item L<XML::NewsML_G2::Role::Remote>
@@ -259,12 +295,13 @@ and the inline catalog will be replaced with a link:
 
 =item L<XML::NewsML_G2::Role::RemoteAudible>
 
-
 =back
+
 
 =head1 DEPENDENCIES
 
-Moose, XML::LibXML, DateTime, DateTime::Format::XSD, UUID::Tiny
+Moose, XML::LibXML, DateTime, DateTime::Format::XSD, UUID::Tiny,
+Module::Runtime
 
 =head1 BUGS AND LIMITATIONS
 
@@ -272,7 +309,7 @@ No bugs have been reported.
 
 Please report any bugs or feature requests to
 C<bug-xml-newsml_g2@rt.cpan.org>, or through the web interface at
-L<http://rt.cpan.org>.
+L<https://rt.cpan.org/Public/Dist/Display.html?Name=XML-NewsML_G2>.
 
 Be aware that the API for this module I<will> change with each
 upcoming release.
@@ -285,7 +322,7 @@ upcoming release.
 
 =back
 
-=head1 AUTHOR
+=head1 AUTHORS
 
 =over 4
 
