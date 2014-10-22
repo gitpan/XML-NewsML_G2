@@ -46,7 +46,7 @@
    "provides" : {
       "XML::NewsML_G2" : {
          "file" : "lib/XML/NewsML_G2.pm",
-         "version" : "v0.2.1"
+         "version" : "v0.2.2"
       },
       "XML::NewsML_G2::AnyItem" : {
          "file" : "lib/XML/NewsML_G2/AnyItem.pm"
@@ -200,7 +200,8 @@
       },
       "license" : [
          "http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt"
-      ]
+      ],
+      "x_IRC" : "irc://irc.perl.org/#xml-newsml-g2"
    },
-   "version" : "v0.2.1"
+   "version" : "v0.2.2"
 }

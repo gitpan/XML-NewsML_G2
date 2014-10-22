@@ -1,6 +1,6 @@
 package XML::NewsML_G2;
 
-# $Id: NewsML_G2.pm 57311 2014-10-22 10:09:41Z apatecgortan $
+# $Id: NewsML_G2.pm 57331 2014-10-22 14:08:51Z apatecgortan $
 
 use XML::NewsML_G2::News_Item;
 use XML::NewsML_G2::News_Item_Text;
@@ -35,7 +35,7 @@ use XML::NewsML_G2::Writer::News_Message;
 use warnings;
 use strict;
 
-use version; our $VERSION = qv('0.2.1');
+use version; our $VERSION = qv('0.2.2');
 
 1;
 
@@ -48,7 +48,7 @@ XML::NewsML_G2 - generate NewsML-G2 news items
 
 =head1 VERSION
 
-0.2.1
+0.2.2
 
 =begin readme
 
@@ -63,15 +63,20 @@ To install this module, run the following commands:
 
 =end readme
 
-=for test_synopsis
-    my %args;
-
 =head1 SYNOPSIS
 
     use XML::NewsML_G2;
-    my $ni = XML::NewsML_G2::News_Item_Text->new(%args);
+
+    my $provider = XML::NewsML_G2::Provider->new
+        (qcode => 'nsa', name => 'News Somewhere Agency');
+
+    my $ni = XML::NewsML_G2::News_Item_Text->new
+        (title => 'My first NewsML-G2 news item',
+         language => 'en', provider => $provider);
+
     my $writer = XML::NewsML_G2::Writer::News_Item->new(news_item => $ni);
     my $dom = $writer->create_dom();
+    print $dom->serialize(1);
 
 
 =head1 DESCRIPTION
@@ -85,6 +90,24 @@ For the full specification of the format, visit
 L<http://www.newsml-g2.org/>. For a quick introduction, you might
 prefer the L<Quick Start
 Guides|http://www.iptc.org/download?g2quickstartguides>.
+
+=head1 GETTING STARTED
+
+To start, you need to create an instance of the item class of your
+choice, e.g. L<XML::NewsML_G2::NewsML_G2_Text> for a text story, or
+L<XML::NewsML_G2::News_Item_Picture> for an image. Each of these
+classes might have some required attributes (e.g. C<title>,
+C<language>, C<provider>), which you will have to provide when
+creating the instance, as well as a number of optional ones
+(e.g. C<note>). While for some attributes scalar values will do,
+others will require further instances of classes, e.g. for C<provider>
+you will need an instance of L<XML::NewsML_G2::Provider>. Please see
+each class' documentation for details.
+
+Once you're done setting up your data structure, you have to create a
+writer instance in order to retrieve your DOM. For simple news items
+like text or picture, L<XML::NewsML_G2::Writer::News_Item> will be the
+writer class to use.
 
 =head1 CURRENT STATUS
 

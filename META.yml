@@ -20,7 +20,7 @@ name: XML-NewsML_G2
 provides:
   XML::NewsML_G2:
     file: lib/XML/NewsML_G2.pm
-    version: v0.2.1
+    version: v0.2.2
   XML::NewsML_G2::AnyItem:
     file: lib/XML/NewsML_G2/AnyItem.pm
   XML::NewsML_G2::Audio:
@@ -129,6 +129,7 @@ requires:
   perl: v5.8.0
   version: 0.77
 resources:
+  IRC: irc://irc.perl.org/#xml-newsml-g2
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=XML-NewsML_G2
   license: http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
-version: v0.2.1
+version: v0.2.2
