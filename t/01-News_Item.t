@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-# $Id: 01-News_Item.t 57216 2014-10-20 12:16:23Z apatecgortan $
+# $Id: 01-News_Item.t 57307 2014-10-22 09:37:53Z apatecgortan $
 
 use utf8;
 use Test::More;
@@ -19,7 +19,7 @@ use XML::NewsML_G2;
 sub basic_checks {
     my ($dom, $xpc, $ic) = @_;
 
-    like($xpc->findvalue('//nar:copyrightHolder/nar:name'), qr/Franklin D. Roosevelt/, 'correct copyright in XML');
+    like($xpc->findvalue('//nar:copyrightHolder/nar:name'), qr/APA/, 'correct copyright in XML');
     like($xpc->findvalue('//nar:copyrightNotice'), qr/www.apa.at/, 'correct copyright notice in XML');
     like($xpc->findvalue('//nar:usageTerms'), qr/full beer/, 'correct usage terms in XML');
     is($xpc->findvalue('//nar:provider/@qcode'), 'nprov:apa', 'correct provider in XML');
@@ -89,8 +89,8 @@ foreach my $ni (create_ni_text(), create_ni_picture()) {
     like($xpc->findvalue('//nar:creator/@literal'), qr/dw.*dk.*wh/, 'correct authors in XML, 2.9-style');
     validate_g2($dom, '2.9');
 
-    # 2.12, 2.15 2.17 checks
-    for my $version (qw(2.12 2.15 2.17)) {
+    # 2.12, 2.15 2.18 checks
+    for my $version (qw(2.12 2.15 2.18)) {
         ok($writer = XML::NewsML_G2::Writer::News_Item->new(news_item => $ni, scheme_manager => $sm, g2_version => $version), "creating $version writer");
         ok($dom = $writer->create_dom(), "$version writer creates DOM");
         ok($xpc = XML::LibXML::XPathContext->new($dom), 'create XPath context for DOM tree');

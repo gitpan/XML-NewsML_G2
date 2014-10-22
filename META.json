@@ -46,7 +46,7 @@
    "provides" : {
       "XML::NewsML_G2" : {
          "file" : "lib/XML/NewsML_G2.pm",
-         "version" : "v0.2.0"
+         "version" : "v0.2.1"
       },
       "XML::NewsML_G2::AnyItem" : {
          "file" : "lib/XML/NewsML_G2/AnyItem.pm"
@@ -156,8 +156,8 @@
       "XML::NewsML_G2::Role::Writer_2_15" : {
          "file" : "lib/XML/NewsML_G2/Role/Writer_2_15.pm"
       },
-      "XML::NewsML_G2::Role::Writer_2_17" : {
-         "file" : "lib/XML/NewsML_G2/Role/Writer_2_17.pm"
+      "XML::NewsML_G2::Role::Writer_2_18" : {
+         "file" : "lib/XML/NewsML_G2/Role/Writer_2_18.pm"
       },
       "XML::NewsML_G2::Role::Writer_2_9" : {
          "file" : "lib/XML/NewsML_G2/Role/Writer_2_9.pm"
@@ -202,5 +202,5 @@
          "http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt"
       ]
    },
-   "version" : "v0.2.0"
+   "version" : "v0.2.1"
 }

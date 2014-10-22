@@ -1,6 +1,6 @@
 package XML::NewsML_G2;
 
-# $Id: NewsML_G2.pm 57223 2014-10-20 13:44:19Z apatecgortan $
+# $Id: NewsML_G2.pm 57311 2014-10-22 10:09:41Z apatecgortan $
 
 use XML::NewsML_G2::News_Item;
 use XML::NewsML_G2::News_Item_Text;
@@ -35,7 +35,7 @@ use XML::NewsML_G2::Writer::News_Message;
 use warnings;
 use strict;
 
-use version; our $VERSION = qv('0.2.0');
+use version; our $VERSION = qv('0.2.1');
 
 1;
 
@@ -48,7 +48,7 @@ XML::NewsML_G2 - generate NewsML-G2 news items
 
 =head1 VERSION
 
-0.2.0
+0.2.1
 
 =begin readme
 
@@ -70,7 +70,7 @@ To install this module, run the following commands:
 
     use XML::NewsML_G2;
     my $ni = XML::NewsML_G2::News_Item_Text->new(%args);
-    my $writer = XML::NewsML_G2::Writer_2_15(news_item => $ni);
+    my $writer = XML::NewsML_G2::Writer::News_Item->new(news_item => $ni);
     my $dom = $writer->create_dom();
 
 
@@ -82,8 +82,8 @@ to implement the complete standard, but to cover the most common use
 cases in a best-practice manner.
 
 For the full specification of the format, visit
-L<http://www.iptc.org/site/News_Exchange_Formats/NewsML-G2/>. For a
-quick introduction, you might prefer the L<Quick Start
+L<http://www.newsml-g2.org/>. For a quick introduction, you might
+prefer the L<Quick Start
 Guides|http://www.iptc.org/download?g2quickstartguides>.
 
 =head1 CURRENT STATUS
@@ -91,11 +91,10 @@ Guides|http://www.iptc.org/download?g2quickstartguides>.
 The implementation currently supports text, picture, video, audio,
 graphics, as well as multimedia packages and slideshows.
 
-Version 2.15 is the latest version of the standard supported by this
-software, and should be your first choice. Using versions 2.9 and 2.12
-is deprecated, and support for it will beremoved in future
-releases. Draft version 2.17 is unsupported, but will evolve into 2.18
-when it is finalised.
+Version 2.18 is the latest version of the standard supported by this
+software, and should be your first choice. Using versions 2.9, 2.12
+and 2.15 is deprecated, and support for it will beremoved in future
+releases.
 
 =head1 SCHEMES AND CATALOGS
 
@@ -255,7 +254,7 @@ and the inline catalog will be replaced with a link:
 
 =item L<XML::NewsML_G2::Role::Writer_2_15>
 
-=item L<XML::NewsML_G2::Role::Writer_2_17>
+=item L<XML::NewsML_G2::Role::Writer_2_18>
 
 =item L<XML::NewsML_G2::Role::Writer::News_Item_Text>
 

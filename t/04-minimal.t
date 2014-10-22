@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-# $Id: 04-minimal.t 57216 2014-10-20 12:16:23Z apatecgortan $
+# $Id: 04-minimal.t 57307 2014-10-22 09:37:53Z apatecgortan $
 
 use utf8;
 use Test::More;
@@ -30,6 +30,6 @@ ok(my $dom = $writer->create_dom(), 'create DOM');
 
 #diag($dom->serialize(1));
 
-validate_g2($dom, '2.15');
+validate_g2($dom);
 
 done_testing;

@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-# $Id: 09-News_Item_Video.t 57216 2014-10-20 12:16:23Z apatecgortan $
+# $Id: 09-News_Item_Video.t 57307 2014-10-22 09:37:53Z apatecgortan $
 
 use utf8;
 use Test::More;
@@ -67,8 +67,8 @@ $xpc->registerNs('xhtml', 'http://www.w3.org/1999/xhtml');
 remotes_checks($dom, $xpc);
 validate_g2($dom, '2.9');
 
-# 2.12, 2.15, 2.17 checks
-foreach my $version (qw(2.12 2.15 2.17)) {
+# 2.12, 2.15, 2.18 checks
+foreach my $version (qw(2.12 2.15 2.18)) {
     ok($writer = XML::NewsML_G2::Writer::News_Item->new(news_item => $ni, scheme_manager => $sm, g2_version => $version), "creating $version writer");
     ok($dom = $writer->create_dom(), "$version writer creates DOM");
     #diag($dom->serialize(1));

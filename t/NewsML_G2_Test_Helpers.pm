@@ -1,6 +1,6 @@
 package NewsML_G2_Test_Helpers;
 
-# $Id: NewsML_G2_Test_Helpers.pm 57216 2014-10-20 12:16:23Z apatecgortan $
+# $Id: NewsML_G2_Test_Helpers.pm 57307 2014-10-22 09:37:53Z apatecgortan $
 
 use Exporter 'import';
 use File::Spec::Functions qw(catfile);
@@ -53,12 +53,11 @@ $mt20000553->add_translation('en', 'leisure venue');
 $mt20000553->parent($mt20000538);
 
 ok(our $prov_apa = XML::NewsML_G2::Provider->new
-   (qcode => 'apa', name => 'APA - Austria Presse Agentur',
-    notice => '(c) 2014 http://www.apa.at'
-   ), 'create Provider instance');
+   (qcode => 'apa', name => 'APA - Austria Presse Agentur',),
+    'create Provider instance');
 
 ok(our $copy_hold = XML::NewsML_G2::Copyright_Holder->new
-    (qcode => '1235', name => 'Franklin D. Roosevelt',
+    (qcode => 'apa', name => 'APA - Austria Presse Agentur',
         notice => '(c) 2014 http://www.apa.at',
         uri => 'http://www.apa.at'
     ), 'create copyright holder instance');
@@ -113,6 +112,7 @@ our @keywords = qw(beer vienna prater kolarik schweizerhaus);
 
 sub validate_g2 {
     my ($dom, $version) = @_;
+    $version ||= XML::NewsML_G2::Writer->meta->get_attribute('g2_version')->default;
 
   SKIP: {
         skip 'libxml2 before 2.8 reports bogus violation on children of "broader"', 2 if (20800 > XML::LibXML::LIBXML_RUNTIME_VERSION);
@@ -233,7 +233,7 @@ sub test_ni_versions {
     my ($ni, $sm, %version_checks) = @_;
 
     if (my $h = delete $version_checks{'*'}) {
-        $version_checks{$_} = $h foreach (qw(2.12 2.15 2.17));
+        $version_checks{$_} = $h foreach (qw(2.12 2.15 2.18));
     }
 
     while (my ($version, $chkfn) = each %version_checks) {

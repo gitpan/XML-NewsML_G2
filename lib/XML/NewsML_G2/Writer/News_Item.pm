@@ -1,6 +1,6 @@
 package XML::NewsML_G2::Writer::News_Item;
 
-# $Id: News_Item.pm 57216 2014-10-20 12:16:23Z apatecgortan $
+# $Id: News_Item.pm 57307 2014-10-22 09:37:53Z apatecgortan $
 
 use Moose;
 
@@ -21,7 +21,7 @@ sub _create_rights_info {
     my $ri = $self->create_element('rightsInfo');
 
     $ri->appendChild (my $crh = $self->create_element('copyrightHolder', _name_text => $self->news_item->copyright_holder));
-    $self->scheme_manager->add_qcode_or_literal($crh, 'em', $self->news_item->copyright_holder->qcode);
+    $self->scheme_manager->add_qcode_or_literal($crh, 'copyright_holder', $self->news_item->copyright_holder->qcode);
     $crh->setAttribute('uri', $self->news_item->copyright_holder->uri) if $self->news_item->copyright_holder->uri;
 
     my $notice = $self->news_item->copyright_holder->notice;
@@ -337,7 +337,7 @@ NewsML-G2 for News Items
 =head1 SYNOPSIS
 
     my $w = XML::NewsML_G2::Writer::News_Item->new
-        (news_item => $ni, scheme_manager => $sm, g2_version => 2.15);
+        (news_item => $ni, scheme_manager => $sm);
 
     my $p = $w->create_element('p', class => 'main', _text => 'blah');
 

@@ -1,6 +1,6 @@
 package XML::NewsML_G2::Copyright_Holder;
 
-# $Id: Copyright_Holder.pm 57056 2014-10-15 16:26:09Z apatecgortan $
+# $Id: Copyright_Holder.pm 57280 2014-10-21 13:15:59Z apatechrdlicka $
 
 use Moose;
 use namespace::autoclean;
@@ -30,6 +30,10 @@ XML::NewsML_G2::Copyright_Holder - the news provider (news agency)
 =item notice
 
 for an optional copyright notice
+
+=item uri
+
+optional uri to copyright holder
 
 =back
 

@@ -1,6 +1,6 @@
 package XML::NewsML_G2::Role::Writer::News_Item_Picture;
 
-# $Id: News_Item_Picture.pm 55992 2014-09-03 16:16:39Z apatecpaumann $
+# $Id: News_Item_Picture.pm 57304 2014-10-22 08:07:28Z apatecgortan $
 
 use Moose::Role;
 use namespace::autoclean;
@@ -12,7 +12,6 @@ around '_build_g2_catalog_schemes' => sub {
     my $result = $self->$orig(@args);
     $result->{rnd} = undef;
     $result->{colsp} = undef;
-    $result->{loutorient} = undef;
     return $result;
 };
 

@@ -15,18 +15,18 @@ not run its Makefile.PL or Build.PL.
 Hash: SHA1
 
 SHA1 e4cffaf29cb4621e352202149f739eaebfc5bc64 Build.PL
-SHA1 2c4139a82913de7a191fe144232d9d1da00d119e Changes
+SHA1 bb14ef7b5a8a83ab77f6891e42a678a18873cc04 Changes
 SHA1 f96482c304570fca3ca971a56aae94170a0579f4 LICENSE
-SHA1 e1778bcbbfcf9be00d32991096b5d722ccf8d5bc MANIFEST
-SHA1 6c4af32dbf61fe4f11e8ad25f622edbe0228ac8a META.json
-SHA1 63c2fcba7903ef1712aee014a4a2354e616608f0 META.yml
+SHA1 88530b58d133c103747c4256f097f7500f4ed4ca MANIFEST
+SHA1 b596d914caa1ef73ad325c475100404f82c59c95 META.json
+SHA1 7b0e4a3add30e7353b683b41f231afd58f46a373 META.yml
 SHA1 6f6367b7fd6707dcd549278e643e98f34715047b Makefile.PL
-SHA1 e3f5de19c1f6ad870360dd0d9606c5a8f801b7c0 README
-SHA1 8e4ac6d12811a6ec4e1777616bd7f518684f6c6c TODO
-SHA1 ab0b1aad79578665078af6678f3b9a5004eb6846 lib/XML/NewsML_G2.pm
+SHA1 715df519f7a29dcecab9c20ae7855b7ab7c9fffb README
+SHA1 94289b8150adf97b43c4712dfa1e8fe128b64a7d TODO
+SHA1 cf9681f9c7719d3bed6dc046ce1df604c76ff570 lib/XML/NewsML_G2.pm
 SHA1 c79901ceb5de0f7c56d420bbd6543ca18d4d1f84 lib/XML/NewsML_G2/AnyItem.pm
 SHA1 a86538f6a19fa7154720ac5c5957ffcc009a8253 lib/XML/NewsML_G2/Audio.pm
-SHA1 87b4d8fcfa5c9af863486f28397662642b174fd1 lib/XML/NewsML_G2/Copyright_Holder.pm
+SHA1 ca17bcb1f1dd0076a82a0e1cc6868161e557dd85 lib/XML/NewsML_G2/Copyright_Holder.pm
 SHA1 a8fde156bd5093a449d2bcf675a1437f4918eede lib/XML/NewsML_G2/Desk.pm
 SHA1 88d4cc63d782d0d35dd96114646881d8cac51dc7 lib/XML/NewsML_G2/Genre.pm
 SHA1 3685a3bc882dbe8a886f3b074bbb6fc09ede9b82 lib/XML/NewsML_G2/Graphics.pm
@@ -42,10 +42,10 @@ SHA1 7020678b1bed5b83789e66b4d8345eccddafd39b lib/XML/NewsML_G2/News_Item_Text.p
 SHA1 bbf9df34f202fecc6d88dde1cab65dc38d7b957d lib/XML/NewsML_G2/News_Item_Video.pm
 SHA1 8e72cb30f86a7beec3cd98baa618c81198640f2c lib/XML/NewsML_G2/News_Message.pm
 SHA1 6bb0f673bf2de63b76a8e38ab049521e40c80f7b lib/XML/NewsML_G2/Organisation.pm
-SHA1 e769f8bdd323476a5190fa2c4b3d1763e00a15ae lib/XML/NewsML_G2/Package_Item.pm
+SHA1 5168a56a94290e33b96c4371085bbaa10c5f8a19 lib/XML/NewsML_G2/Package_Item.pm
 SHA1 318dac165966729c9068bb6d4ac12089c966c1c2 lib/XML/NewsML_G2/Picture.pm
 SHA1 edfcd2cefa4e236f33f752904cb884e12d437621 lib/XML/NewsML_G2/Product.pm
-SHA1 8757a24154b42e24e8b693e8720e1725118ffbc2 lib/XML/NewsML_G2/Provider.pm
+SHA1 7fa01ae737bfc3c4754a80ba901fcba919970831 lib/XML/NewsML_G2/Provider.pm
 SHA1 3e63afefbdf06df9f99383b2d93252e8c8158b20 lib/XML/NewsML_G2/Role/HasQCode.pm
 SHA1 da2c4edaf4e784d01d935d2c3738b59bcac6dd43 lib/XML/NewsML_G2/Role/Remote.pm
 SHA1 2922b32200532a2b9af81306ed9e8958072ef752 lib/XML/NewsML_G2/Role/RemoteAudible.pm
@@ -53,42 +53,43 @@ SHA1 0641aa8addda2141ed660394b39f44c57ea45614 lib/XML/NewsML_G2/Role/RemoteVisua
 SHA1 12927e484dc06567eea893db29562fdf18a2679e lib/XML/NewsML_G2/Role/Writer.pm
 SHA1 bbd74fc3bafd45d471e496462bf2f3593eed2c53 lib/XML/NewsML_G2/Role/Writer/News_Item_Audio.pm
 SHA1 25a5ae2e1fcd353476bf2a620da09201829637e8 lib/XML/NewsML_G2/Role/Writer/News_Item_Graphics.pm
-SHA1 9ed03ad71206555f17daad1da107696aba0c1eab lib/XML/NewsML_G2/Role/Writer/News_Item_Picture.pm
+SHA1 e23f42a68d2840c1979b39c76917280d241842c0 lib/XML/NewsML_G2/Role/Writer/News_Item_Picture.pm
 SHA1 b97f34b8ff8b4386148f571723131598f5d41c6c lib/XML/NewsML_G2/Role/Writer/News_Item_Text.pm
 SHA1 7441a379456318795c53de4b873a61cac78ce700 lib/XML/NewsML_G2/Role/Writer/News_Item_Video.pm
 SHA1 14be26137cadaa715c36df84dd70fadc23507285 lib/XML/NewsML_G2/Role/Writer/News_Message.pm
 SHA1 c32ec79be1f7829ea19729773aeb37bc786a1a2e lib/XML/NewsML_G2/Role/Writer/Package_Item.pm
 SHA1 1140cec18ab5f5ca1ae917e550d42602db44b4b6 lib/XML/NewsML_G2/Role/Writer_2_12.pm
 SHA1 56973c971d81b2a7ddd31edc71a77a20f1fb8595 lib/XML/NewsML_G2/Role/Writer_2_15.pm
-SHA1 880080cdf7b44bb258b5ef887de78d0d9e59557e lib/XML/NewsML_G2/Role/Writer_2_17.pm
-SHA1 84a0d3881f4518394890a333d65fde6c8e06ce9d lib/XML/NewsML_G2/Role/Writer_2_9.pm
+SHA1 f893f5b2255650c613de1830d80f5382aa64fad4 lib/XML/NewsML_G2/Role/Writer_2_18.pm
+SHA1 bd25bf019774fea2238f1327d73a0ff79fc67d6f lib/XML/NewsML_G2/Role/Writer_2_9.pm
 SHA1 7d2f353b1f82321ce7f2d29f389c5fca72a66539 lib/XML/NewsML_G2/Scheme.pm
-SHA1 d5bb2f0a8ea0722f7f7ae2c85c070e33d377a32f lib/XML/NewsML_G2/Scheme_Manager.pm
+SHA1 29396298350ebcbb522326c412f7a67938987afc lib/XML/NewsML_G2/Scheme_Manager.pm
 SHA1 9bd21998e2a3997a2a8d7b3debb211dbb1806776 lib/XML/NewsML_G2/Service.pm
 SHA1 562bf849753657699b2036297238aeef27812a2f lib/XML/NewsML_G2/Topic.pm
 SHA1 8f5ba65fcdff108d997ad47952c62ac677099c3c lib/XML/NewsML_G2/Types.pm
 SHA1 600d7dc827db39595dd67c6caf62a44904f285d7 lib/XML/NewsML_G2/Video.pm
-SHA1 f240e362f09e4a1cda9a519669596d8e06791b08 lib/XML/NewsML_G2/Writer.pm
-SHA1 d4b8453e5b53c9cc5b1dfeabe3dd739db77d22f8 lib/XML/NewsML_G2/Writer/News_Item.pm
-SHA1 0845c792ddd7f2cfa7098e8cc18cb26bdcf2680b lib/XML/NewsML_G2/Writer/News_Message.pm
-SHA1 9977385e437551b4c8828d4ea8b9db2a2e0e091a lib/XML/NewsML_G2/Writer/Package_Item.pm
+SHA1 2065224f6436a48fdb85aa55d0c984ecb12fd553 lib/XML/NewsML_G2/Writer.pm
+SHA1 99648798e357d0d146738194c5b8753bfcab1d1f lib/XML/NewsML_G2/Writer/News_Item.pm
+SHA1 adf96325d098fdc183f07d79e364bbcfdf8e89b5 lib/XML/NewsML_G2/Writer/News_Message.pm
+SHA1 70cc96f92268c507f81e89bad5a35c045394fec7 lib/XML/NewsML_G2/Writer/Package_Item.pm
 SHA1 becd1816dfa1e94e6520f88b82b4b4e000c9518d t/00-compile.t
 SHA1 77ee1912e81305edcfd84f410a2c8413e772d331 t/00-load.t
 SHA1 473906254ecd96009795d4b7fbc82fac48c03ecd t/000-report-versions.t
-SHA1 5b3d1834861e4344e5a1ac763ee727c269f2555a t/01-News_Item.t
-SHA1 0ff5cc9835b1df0fd00557ee21ae1e58aee58437 t/01-News_Item_Audio.t
+SHA1 958e07662248bf266c041407ca7e065e4a017dd7 t/01-News_Item.t
+SHA1 9802a03c06e1c158b6dd85cfa6e80965cf132f49 t/01-News_Item_Audio.t
 SHA1 93b3b2d699864f2374bfe76c9fe3295e00f89e25 t/01-News_Item_Graphics.t
 SHA1 a93f80d3500d7a3a587fcf5dc67f370d32b2fadc t/01-News_Item_Picture.t
 SHA1 864903e0ac50e1154b336eccbef2689abf7bdb82 t/02-Product.t
 SHA1 d7b1727547892726270257de10a146e01df86391 t/03-Paragraphs.t
-SHA1 9d4f901cca727a0da774e404008795a7b36f1039 t/04-minimal.t
-SHA1 949f0aa71c7fc51a7780a1f7bdc4f76d3d067357 t/05-no-catalog.t
-SHA1 70a481c814ea8820a4b72e35bc5ff20591704758 t/06-add-schema-catalog.t
-SHA1 d282142ef39407ee3a3adcf2f4e33309af5991de t/07-Package_Item.t
-SHA1 7257ece8ac0d04fe145eedf3d35b6b4c570dad69 t/08-all-schemes-in-catalogs.t
-SHA1 3d0b2f83c972d20c3515813456e238059e47110c t/09-News_Item_Video.t
-SHA1 23066113c65117ed13967f0d76bd0069bf565126 t/10-News_Message.t
-SHA1 dd725fd4246ce342477a0214329154253973650b t/NewsML_G2_Test_Helpers.pm
+SHA1 37a7496011679766b4614c87b55d2782574ff0f8 t/04-minimal.t
+SHA1 cfe7d47f1a1f6a75b38ddb72aa3ca67dcbe932b2 t/05-no-catalog.t
+SHA1 6c64af12682ffea168b5b778a3f69d6ee88a9664 t/06-add-schema-catalog.t
+SHA1 dbd6010c3a848f1f6b297de899cfa3b1083b63f6 t/07-Package_Item.t
+SHA1 aa286be558f7f84f1d30ed8828152390d12f0717 t/08-all-schemes-in-catalogs.t
+SHA1 236f94b9e9cd20a82ac4ca0d147305355b9faa81 t/09-News_Item_Video.t
+SHA1 8791a1bac11d99e1ad3b5b867aeeccbe612b7456 t/10-News_Message.t
+SHA1 3eb3c0eccd569aa2d6de413ae68b4a45434f4ee9 t/11-press-release.t
+SHA1 ceb1f7eb3e56b0647626ad04520926c3a6179905 t/NewsML_G2_Test_Helpers.pm
 SHA1 1cd9f1123faebe31b68219694443b7cfd14e1891 t/author-test-eol.t
 SHA1 653f12afee3f4ddc07b583d78b8d8c9a538d271e t/perlcritic.t
 SHA1 a38fbf15deba4eade91ae6b8e3c9dcbb7ef009b5 t/perlcriticrc
@@ -105,13 +106,13 @@ SHA1 d7221447937ab93002a123801def7be09748c106 t/release-unused-vars.t
 SHA1 e9e9c3fa1af466895b2d1415ee8d06a391c356dc t/signature.t
 SHA1 3c5fb38664c59afb248a26f8522f52729b4cb4da t/xsds/NewsML-G2_2_12-spec-All-Power.xsd
 SHA1 a456fa9ba2bf92618c50ae0c0068c46b596e2693 t/xsds/NewsML-G2_2_15-spec-All-Power.xsd
-SHA1 8c8c5cf2e603ea5ec28c9317f8fdb7a33bf92cd9 t/xsds/NewsML-G2_2_17-spec-All-Power.xsd
+SHA1 0f20ec49a1bf861cac34f39c18bb5c2cc06144d3 t/xsds/NewsML-G2_2_18-spec-All-Power.xsd
 SHA1 4a182136437c69071ef3cee0b0ebbc58ab2551cb t/xsds/NewsML-G2_2_9-spec-All-Power.xsd
 SHA1 83cfde8cf301b6f44070a14c3dfd475736ec6c85 t/xsds/xml.xsd
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2
 
-iEYEARECAAYFAlRFEj0ACgkQZl2snOVAwQvrbACgmOcBu8oBiSyp+XB7uyBaXGUh
-yF0AoJLhVxw809PVqO/8lccrFF84DE2+
-=JdgA
+iEYEARECAAYFAlRHgqUACgkQZl2snOVAwQtbbQCfWNnSbi+4vSGw3a/Jfn0yzhEC
+VaQAmgJe+dQmUAAVbvyyJTiSdXXQBvnR
+=fHH0
 -----END PGP SIGNATURE-----

@@ -1,6 +1,6 @@
 package XML::NewsML_G2::Role::Writer_2_9;
 
-# $Id: Writer_2_9.pm 57048 2014-10-15 15:31:35Z apatechrdlicka $
+# $Id: Writer_2_9.pm 57280 2014-10-21 13:15:59Z apatechrdlicka $
 
 use Moose::Role;
 
@@ -16,7 +16,7 @@ override '_create_rights_info' => sub {
     my $ri = $self->create_element('rightsInfo');
 
     $ri->appendChild (my $crh = $self->create_element('copyrightHolder', _name_text => $self->news_item->copyright_holder));
-    $self->scheme_manager->add_qcode_or_literal($crh, 'em', $self->news_item->copyright_holder->qcode);
+    $self->scheme_manager->add_qcode_or_literal($crh, 'nprov', $self->news_item->copyright_holder->qcode);
 
     my $notice = $self->news_item->copyright_holder->notice;
     $ri->appendChild($self->create_element('copyrightNotice', _text => $notice)) if $notice;

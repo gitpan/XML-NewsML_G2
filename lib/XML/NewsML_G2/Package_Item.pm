@@ -1,6 +1,6 @@
 package XML::NewsML_G2::Package_Item;
 
-# $Id: Package_Item.pm 56085 2014-09-08 14:01:04Z apatecgortan $
+# $Id: Package_Item.pm 57307 2014-10-22 09:37:53Z apatecgortan $
 
 use Moose;
 use namespace::autoclean;
@@ -40,7 +40,15 @@ __END__
 
 XML::NewsML_G2::Package_Item - a package of news items
 
+=for test_synopsis
+    my ($prov_apa, $text_item, $pic_item);
+
 =head1 SYNOPSIS
+
+    my $pi = XML::NewsML_G2::Package_Item->new
+        (language => 'de', provider => $prov_apa);
+    $pi->add_to_root_group($text_item, $pic_item);
+
 
 =head1 DESCRIPTION
 

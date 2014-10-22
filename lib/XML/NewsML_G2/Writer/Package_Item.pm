@@ -1,8 +1,9 @@
 package XML::NewsML_G2::Writer::Package_Item;
 
-# $Id: Package_Item.pm 57216 2014-10-20 12:16:23Z apatecgortan $
+# $Id: Package_Item.pm 57307 2014-10-22 09:37:53Z apatecgortan $
 
 use Moose;
+use Carp;
 
 extends 'XML::NewsML_G2::Writer';
 
@@ -15,11 +16,12 @@ sub _build__root_item {
     return $self->package_item;
 }
 
-#sub BUILD {
-#    my $self = shift;
-#    my $test_group = $self->scheme_manager->build_qcode('group', 'test');
-#    die 'You need to register a scheme for groups' unless $test_group;
-#}
+sub BUILD {
+   my $self = shift;
+   my $test_group = $self->scheme_manager->build_qcode('group', 'test');
+   croak 'You need to register a scheme for groups' unless $test_group;
+   return;
+}
 
 
 sub _create_item_meta_title {
@@ -98,7 +100,7 @@ NewsML-G2 for Package Items
 =head1 SYNOPSIS
 
     my $w = XML::NewsML_G2::Writer::Package_Item->new
-        (package_item => $pi, scheme_manager => $sm, g2_version => 2.15);
+        (package_item => $pi, scheme_manager => $sm);
 
     my $p = $w->create_element('p', class => 'main', _text => 'blah');
 
