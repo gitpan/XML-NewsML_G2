@@ -1,7 +1,5 @@
 package XML::NewsML_G2::Provider;
 
-# $Id: Provider.pm 57298 2014-10-21 15:03:54Z apatecgortan $
-
 use Moose;
 use namespace::autoclean;
 

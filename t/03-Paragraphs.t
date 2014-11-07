@@ -1,7 +1,5 @@
 #!/usr/bin/env perl
 
-# $Id: 03-Paragraphs.t 55792 2014-08-26 18:30:31Z apatecgortan $
-
 use utf8;
 use Test::More;
 use DateTime::Format::XSD;

@@ -1,7 +1,5 @@
 package NewsML_G2_Test_Helpers;
 
-# $Id: NewsML_G2_Test_Helpers.pm 57307 2014-10-22 09:37:53Z apatecgortan $
-
 use Exporter 'import';
 use File::Spec::Functions qw(catfile);
 use XML::LibXML;

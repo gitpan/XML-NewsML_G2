@@ -1,7 +1,5 @@
 package XML::NewsML_G2;
 
-# $Id: NewsML_G2.pm 57331 2014-10-22 14:08:51Z apatecgortan $
-
 use XML::NewsML_G2::News_Item;
 use XML::NewsML_G2::News_Item_Text;
 use XML::NewsML_G2::News_Item_Picture;
@@ -35,7 +33,7 @@ use XML::NewsML_G2::Writer::News_Message;
 use warnings;
 use strict;
 
-use version; our $VERSION = qv('0.2.2');
+use version; our $VERSION = qv('0.2.3');
 
 1;
 
@@ -48,7 +46,7 @@ XML::NewsML_G2 - generate NewsML-G2 news items
 
 =head1 VERSION
 
-0.2.2
+0.2.3
 
 =begin readme
 
@@ -119,6 +117,7 @@ software, and should be your first choice. Using versions 2.9, 2.12
 and 2.15 is deprecated, and support for it will beremoved in future
 releases.
 
+=for readme stop
 =head1 SCHEMES AND CATALOGS
 
 Before starting to use schemes or catalogs with this module, read the
@@ -319,6 +318,8 @@ and the inline catalog will be replaced with a link:
 
 =back
 
+=for readme continue
+
 
 =head1 DEPENDENCIES
 
@@ -329,9 +330,8 @@ Module::Runtime
 
 No bugs have been reported.
 
-Please report any bugs or feature requests to
-C<bug-xml-newsml_g2@rt.cpan.org>, or through the web interface at
-L<https://rt.cpan.org/Public/Dist/Display.html?Name=XML-NewsML_G2>.
+Please report any bugs or feature requests at
+L<https://github.com/apa-it/xml-newsml-g2/issues>.
 
 Be aware that the API for this module I<will> change with each
 upcoming release.

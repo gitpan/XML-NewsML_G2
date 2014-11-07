@@ -1,10 +1,13 @@
 NAME
+
     XML::NewsML_G2 - generate NewsML-G2 news items
 
 VERSION
-    0.2.2
+
+    0.2.3
 
 INSTALLATION
+
     To install this module, run the following commands:
 
         perl Build.PL
@@ -13,40 +16,43 @@ INSTALLATION
         ./Build install
 
 SYNOPSIS
-        use XML::NewsML_G2;
 
+        use XML::NewsML_G2;
+    
         my $provider = XML::NewsML_G2::Provider->new
             (qcode => 'nsa', name => 'News Somewhere Agency');
-
+    
         my $ni = XML::NewsML_G2::News_Item_Text->new
             (title => 'My first NewsML-G2 news item',
              language => 'en', provider => $provider);
-
+    
         my $writer = XML::NewsML_G2::Writer::News_Item->new(news_item => $ni);
         my $dom = $writer->create_dom();
         print $dom->serialize(1);
 
 DESCRIPTION
+
     This module tries to implement the creation of XML files conforming to
-    the NewsML-G2 specification as published by the IPTC. It does not aim to
-    implement the complete standard, but to cover the most common use cases
-    in a best-practice manner.
+    the NewsML-G2 specification as published by the IPTC. It does not aim
+    to implement the complete standard, but to cover the most common use
+    cases in a best-practice manner.
 
     For the full specification of the format, visit
     http://www.newsml-g2.org/. For a quick introduction, you might prefer
-    the Quick Start Guides.
+    the Quick Start Guides
+    <http://www.iptc.org/download?g2quickstartguides>.
 
 GETTING STARTED
+
     To start, you need to create an instance of the item class of your
     choice, e.g. XML::NewsML_G2::NewsML_G2_Text for a text story, or
     XML::NewsML_G2::News_Item_Picture for an image. Each of these classes
-    might have some required attributes (e.g. `title', `language',
-    `provider'), which you will have to provide when creating the instance,
-    as well as a number of optional ones (e.g. `note'). While for some
-    attributes scalar values will do, others will require further instances
-    of classes, e.g. for `provider' you will need an instance of
-    XML::NewsML_G2::Provider. Please see each class' documentation for
-    details.
+    might have some required attributes (e.g. title, language, provider),
+    which you will have to provide when creating the instance, as well as a
+    number of optional ones (e.g. note). While for some attributes scalar
+    values will do, others will require further instances of classes, e.g.
+    for provider you will need an instance of XML::NewsML_G2::Provider.
+    Please see each class' documentation for details.
 
     Once you're done setting up your data structure, you have to create a
     writer instance in order to retrieve your DOM. For simple news items
@@ -54,6 +60,7 @@ GETTING STARTED
     writer class to use.
 
 CURRENT STATUS
+
     The implementation currently supports text, picture, video, audio,
     graphics, as well as multimedia packages and slideshows.
 
@@ -62,148 +69,37 @@ CURRENT STATUS
     2.15 is deprecated, and support for it will beremoved in future
     releases.
 
-SCHEMES AND CATALOGS
-    Before starting to use schemes or catalogs with this module, read the
-    chapter 13 of the NewsML-G2 implementation guide. Go on, do it now. I'll
-    wait.
-
-    You don't need to use either schemes or catalogs in order to use this
-    module, unless you are required to do so by the NewsML-G2 standard (e.g.
-    the `service' attribute). If you specify a value for such an attribute
-    and don't add a corresponding scheme, creating the DOM tree will die.
-
-    For all attributes where a scheme is not required by the standard, you
-    can start without specifying anything. In that case, a `literal'
-    attribute will be created, with the value you specified in the `qcode'
-    attribute. For instance:
-
-        my $org = XML::NewsML_G2::Organisation->new(name => 'Google', qcode => 'gogl');
-        $ni->add_organisation($org);
-
-    will result in this output:
-
-        <subject type="cpnat:organisation" literal="org#gogl">
-          <name>Google</name>
-        </subject>
-
-    If the qcodes used in your organisation instances are part of a
-    controlled vocabulary, you can convey this information by creating a
-    XML::NewsML_G2::Scheme instance, specifying a custom, unique `uri' for
-    your vocabulary, and registering it with the
-    XML::NewsML_G2::Scheme_Manager:
-
-        my $os = XML::NewsML_G2::Scheme->new(alias => 'xyzorg',
-            uri => 'http://xyz.org/cv/org');
-        my $sm = XML::NewsML_G2::Scheme_Manager->new(org => $os);
-
-    The output will now contain an inline catalog with your scheme:
-
-        <catalog>
-          <scheme alias="xyzorg" uri="http://xyz.org/cv/org"/>
-        </catalog>
-
-    and the literal will be replaced by a qcode:
-
-        <subject type="cpnat:organisation" qcode="xyzorg:gogl">
-          <name>Google</name>
-        </subject>
-
-    If you have multiple schemes, you can package them together into a
-    single catalog, which you publish on your website. Simply specify the
-    URL of the catalog when creating the XML::NewsML_G2::Scheme instance:
-
-        my $os = XML::NewsML_G2::Scheme->new(alias => 'xyzorg',
-            catalog => 'http://xyz.org/catalog_1.xml');
-
-    and the inline catalog will be replaced with a link:
-
-        <catalogRef href="http://xyz.org/catalog_1.xml"/>
-
-API
-  Main Classes
-    XML::NewsML_G2::News_Item
-    XML::NewsML_G2::News_Item_Text
-    XML::NewsML_G2::News_Item_Audio
-    XML::NewsML_G2::News_Item_Picture
-    XML::NewsML_G2::News_Item_Video
-    XML::NewsML_G2::News_Item_Graphics
-    XML::NewsML_G2::News_Message
-    XML::NewsML_G2::Package_Item
-    XML::NewsML_G2::AnyItem
-
-  Scheme Handling
-    XML::NewsML_G2::Scheme
-    XML::NewsML_G2::Scheme_Manager
-
-  Classes for Structured Data Attributes
-    XML::NewsML_G2::Service
-    XML::NewsML_G2::Video
-    XML::NewsML_G2::Media_Topic
-    XML::NewsML_G2::Topic
-    XML::NewsML_G2::Genre
-    XML::NewsML_G2::Provider
-    XML::NewsML_G2::Desk
-    XML::NewsML_G2::Location
-    XML::NewsML_G2::Organisation
-    XML::NewsML_G2::Product
-    XML::NewsML_G2::Group
-    XML::NewsML_G2::Picture
-    XML::NewsML_G2::Graphics
-    XML::NewsML_G2::Audio
-    XML::NewsML_G2::Copyright_Holder
-    XML::NewsML_G2::Icon
-
-  Writer Classes and Roles
-    XML::NewsML_G2::Writer
-    XML::NewsML_G2::Writer::News_Item
-    XML::NewsML_G2::Writer::News_Message
-    XML::NewsML_G2::Writer::Package_Item
-    XML::NewsML_G2::Role::Writer
-    XML::NewsML_G2::Role::Writer_2_9
-    XML::NewsML_G2::Role::Writer_2_12
-    XML::NewsML_G2::Role::Writer_2_15
-    XML::NewsML_G2::Role::Writer_2_18
-    XML::NewsML_G2::Role::Writer::News_Item_Text
-    XML::NewsML_G2::Role::Writer::News_Item_Audio
-    XML::NewsML_G2::Role::Writer::News_Message
-    XML::NewsML_G2::Role::Writer::News_Item_Picture
-    XML::NewsML_G2::Role::Writer::Package_Item
-    XML::NewsML_G2::Role::Writer::News_Item_Video
-    XML::NewsML_G2::Role::Writer::News_Item_Graphics
-
-  Type Definitions
-    XML::NewsML_G2::Types
-
-  Utility Roles
-    XML::NewsML_G2::Role::HasQCode
-    XML::NewsML_G2::Role::Remote
-    XML::NewsML_G2::Role::RemoteVisual
-    XML::NewsML_G2::Role::RemoteAudible
-
 DEPENDENCIES
+
     Moose, XML::LibXML, DateTime, DateTime::Format::XSD, UUID::Tiny,
     Module::Runtime
 
 BUGS AND LIMITATIONS
+
     No bugs have been reported.
 
-    Please report any bugs or feature requests to
-    `bug-xml-newsml_g2@rt.cpan.org', or through the web interface at
-    https://rt.cpan.org/Public/Dist/Display.html?Name=XML-NewsML_G2.
+    Please report any bugs or feature requests at
+    https://github.com/apa-it/xml-newsml-g2/issues.
 
-    Be aware that the API for this module *will* change with each upcoming
+    Be aware that the API for this module will change with each upcoming
     release.
 
 SEE ALSO
+
     XML::NewsML - Simple interface for creating NewsML documents
 
 AUTHORS
-    Philipp Gortan `<philipp.gortan@apa.at>'
-    Mario Paumann `<mario.paumann@apa.at>'
-    Christian Eder `<christian.eder@apa.at>'
-    Stefan Hrdlicka `<stefan.hrdlicka@apa.at>'
+
+    Philipp Gortan <philipp.gortan@apa.at>
+
+    Mario Paumann <mario.paumann@apa.at>
+
+    Christian Eder <christian.eder@apa.at>
+
+    Stefan Hrdlicka <stefan.hrdlicka@apa.at>
 
 LICENCE AND COPYRIGHT
+
     Copyright (c) 2013-2014, APA-IT. All rights reserved.
 
     This module is free software; you can redistribute it and/or modify it
@@ -213,8 +109,8 @@ LICENCE AND COPYRIGHT
 
     This module is distributed in the hope that it will be useful, but
     WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
-    Public License for more details.
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+    General Public License for more details.
 
     You should have received a copy of the GNU General Public License along
     with this module. If not, see http://www.gnu.org/licenses/.

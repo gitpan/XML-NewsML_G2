@@ -1,7 +1,5 @@
 #!/usr/bin/env perl
 
-# $Id: 06-add-schema-catalog.t 57307 2014-10-22 09:37:53Z apatecgortan $
-
 use utf8;
 use Test::More;
 use Test::Exception;

@@ -1,7 +1,5 @@
 package XML::NewsML_G2::News_Item;
 
-# $Id: News_Item.pm 55807 2014-08-27 11:23:31Z apatecederc $
-
 use XML::LibXML qw();
 
 use Carp;

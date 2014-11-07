@@ -1,7 +1,5 @@
 package XML::NewsML_G2::Writer::News_Item;
 
-# $Id: News_Item.pm 57307 2014-10-22 09:37:53Z apatecgortan $
-
 use Moose;
 
 extends 'XML::NewsML_G2::Writer';

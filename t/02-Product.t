@@ -1,7 +1,5 @@
 #!/usr/bin/env perl
 
-# $Id: 02-Product.t 55313 2014-08-08 07:35:40Z apatecpaumann $
-
 use Test::More;
 use XML::NewsML_G2;
 

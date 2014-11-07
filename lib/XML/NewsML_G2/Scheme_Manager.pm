@@ -1,7 +1,5 @@
 package XML::NewsML_G2::Scheme_Manager;
 
-# $Id: Scheme_Manager.pm 57304 2014-10-22 08:07:28Z apatecgortan $
-
 use Moose;
 use Carp;
 use namespace::autoclean;

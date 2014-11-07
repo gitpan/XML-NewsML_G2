@@ -1,7 +1,5 @@
 package XML::NewsML_G2::Role::Writer_2_15;
 
-# $Id: Writer_2_15.pm 57215 2014-10-20 12:16:22Z apatecgortan $
-
 use Moose::Role;
 
 has 'schema_location', isa => 'Str', is => 'ro', default => 'http://iptc.org/std/nar/2006-10-01/';

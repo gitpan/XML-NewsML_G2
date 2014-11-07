@@ -1,7 +1,5 @@
 package XML::NewsML_G2::Role::Writer::News_Item_Picture;
 
-# $Id: News_Item_Picture.pm 57304 2014-10-22 08:07:28Z apatecgortan $
-
 use Moose::Role;
 use namespace::autoclean;
 

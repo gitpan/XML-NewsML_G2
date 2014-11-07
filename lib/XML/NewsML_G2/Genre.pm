@@ -1,7 +1,5 @@
 package XML::NewsML_G2::Genre;
 
-# $Id: Genre.pm 55790 2014-08-26 18:30:30Z apatecgortan $
-
 use Moose;
 use namespace::autoclean;
 

@@ -1,6 +1,5 @@
 #!/usr/bin/env perl
 
-# $Id: 01-News_Item.t 57307 2014-10-22 09:37:53Z apatecgortan $
 
 use utf8;
 use Test::More;

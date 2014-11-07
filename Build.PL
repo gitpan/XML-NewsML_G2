@@ -1,4 +1,4 @@
-# $Id: Build.PL 57328 2014-10-22 13:59:56Z apatecgortan $
+# $Id$
 
 use strict;
 use warnings;
@@ -39,7 +39,8 @@ my $builder = Module::Build->new
    sign => 1,
    meta_merge => {
        resources => {
-           bugtracker => 'https://rt.cpan.org/Public/Dist/Display.html?Name=XML-NewsML_G2',
+           repository => 'https://github.com/apa-it/xml-newsml-g2',
+           bugtracker => 'https://github.com/apa-it/xml-newsml-g2/issues',
            x_IRC => 'irc://irc.perl.org/#xml-newsml-g2',
        }
    },

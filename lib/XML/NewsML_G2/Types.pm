@@ -1,7 +1,5 @@
 package XML::NewsML_G2::Types;
 
-# $Id: Types.pm 57056 2014-10-15 16:26:09Z apatecgortan $
-
 use Moose::Util::TypeConstraints;
 
 use namespace::autoclean;

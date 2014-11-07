@@ -1,7 +1,5 @@
 package XML::NewsML_G2::News_Item_Picture;
 
-# $Id: News_Item_Picture.pm 57056 2014-10-15 16:26:09Z apatecgortan $
-
 use Moose;
 use namespace::autoclean;
 

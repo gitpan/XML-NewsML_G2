@@ -1,7 +1,5 @@
 package XML::NewsML_G2::Media_Topic;
 
-# $Id: Media_Topic.pm 55790 2014-08-26 18:30:30Z apatecgortan $
-
 use Moose;
 use namespace::autoclean;
 

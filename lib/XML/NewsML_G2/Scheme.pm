@@ -1,7 +1,5 @@
 package XML::NewsML_G2::Scheme;
 
-# $Id: Scheme.pm 55765 2014-08-26 09:29:10Z apatecederc $
-
 use Moose;
 use namespace::autoclean;
 

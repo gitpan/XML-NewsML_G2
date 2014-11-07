@@ -1,7 +1,5 @@
 package XML::NewsML_G2::AnyItem;
 
-# $Id: AnyItem.pm 57048 2014-10-15 15:31:35Z apatechrdlicka $
-
 use Moose;
 use namespace::autoclean;
 

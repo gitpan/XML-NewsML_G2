@@ -1,7 +1,5 @@
 package XML::NewsML_G2::Writer;
 
-# $Id: Writer.pm 57307 2014-10-22 09:37:53Z apatecgortan $
-
 use Carp;
 use Moose;
 use Moose::Util;
@@ -199,8 +197,8 @@ sub create_element {
     my $name_text = delete $attrs{_name_text};
     my $ns = delete $attrs{_ns} || $self->g2_ns;
     my $elem = $self->doc->createElementNS($ns, $name);
-    while (my ($k, $v) = each %attrs) {
-        $elem->setAttribute($k, $v);
+    for my $attr_name (sort keys %attrs) {
+        $elem->setAttribute($attr_name, $attrs{$attr_name});
     }
     if ($text) {
         $elem->appendChild($self->doc->createTextNode($text));

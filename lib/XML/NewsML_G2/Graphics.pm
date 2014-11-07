@@ -1,7 +1,5 @@
 package XML::NewsML_G2::Graphics;
 
-# $Id: Graphics.pm 57056 2014-10-15 16:26:09Z apatecgortan $
-
 use XML::NewsML_G2::Types;
 
 use Moose;

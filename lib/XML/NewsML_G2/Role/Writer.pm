@@ -1,7 +1,5 @@
 package XML::NewsML_G2::Role::Writer;
 
-# $Id: Writer.pm 57055 2014-10-15 16:23:43Z apatecgortan $
-
 use Moose::Role;
 use namespace::autoclean;
 

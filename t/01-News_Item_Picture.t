@@ -1,7 +1,5 @@
 #!/usr/bin/env perl
 
-# $Id: 01-News_Item_Picture.t 57056 2014-10-15 16:26:09Z apatecgortan $
-
 use utf8;
 use Test::More;
 use DateTime::Format::XSD;

@@ -1,7 +1,5 @@
 package XML::NewsML_G2::Role::Writer_2_9;
 
-# $Id: Writer_2_9.pm 57280 2014-10-21 13:15:59Z apatechrdlicka $
-
 use Moose::Role;
 
 
