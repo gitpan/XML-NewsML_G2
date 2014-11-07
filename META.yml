@@ -20,7 +20,7 @@ name: XML-NewsML_G2
 provides:
   XML::NewsML_G2:
     file: lib/XML/NewsML_G2.pm
-    version: v0.2.3
+    version: v0.2.4
   XML::NewsML_G2::AnyItem:
     file: lib/XML/NewsML_G2/AnyItem.pm
   XML::NewsML_G2::Audio:
@@ -133,4 +133,4 @@ resources:
   bugtracker: https://github.com/apa-it/xml-newsml-g2/issues
   license: http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
   repository: https://github.com/apa-it/xml-newsml-g2
-version: v0.2.3
+version: v0.2.4
